@@ -11,6 +11,14 @@ import MobileCoreServices
 import Alamofire
 import SwiftyJSON
 
+
+public enum UserVerified {
+    case error
+    case userDoesntExist
+    case userNotVerified
+    case userVerified
+}
+
 let PUBLIC_BASE_URL = "https://mydailybeat.herokuapp.com"
 let AUTH_BASE_URL = PUBLIC_BASE_URL + "/api"
 public let GET_REQUEST = "GET"
@@ -48,7 +56,7 @@ public class RestAPI: NSObject {
             var result = self.makeRequest(withBaseUrl: PUBLIC_BASE_URL, withPath: "token/validate", withParameters: "", withRequestType: POST_REQUEST, andPost: postData)
             return result["success"].boolValue
         } else {
-            return false
+            return true
         }
     }
 
@@ -112,13 +120,24 @@ public class RestAPI: NSObject {
         return result["success"].boolValue
     }
     
-    public func isUserVerified(screenName: String, password: String) -> Bool {
+    public func isUserVerified(screenName: String, password: String) -> UserVerified {
         var postDic = [String: JSON]()
         postDic["screenName"] = JSON(screenName)
         postDic["password"] = JSON(password)
         let postData = JSON(postDic)
         var result = self.makeRequest(withBaseUrl: PUBLIC_BASE_URL, withPath: "user/verified/check", withParameters: "", withRequestType: POST_REQUEST, andPost: postData)
-        return result["success"].boolValue
+        let success = result["success"].boolValue
+        let verified = result["verified"].boolValue
+        let error = result["error"].boolValue
+        if !success && !verified && error {
+            return .error
+        } else if !success && !verified {
+            return .userDoesntExist
+        } else if !verified {
+            return .userNotVerified
+        } else {
+            return .userVerified
+        }
     }
     
     public func resendEmail(screenName: String, password: String) {

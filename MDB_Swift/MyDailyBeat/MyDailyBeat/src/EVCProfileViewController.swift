@@ -56,11 +56,11 @@ class EVCProfileViewController: UIViewController, UITableViewDataSource, UITable
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             RestAPI.getInstance().refreshCurrentUserData()
             DispatchQueue.main.async {
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
             }
         })
     }
@@ -68,12 +68,12 @@ class EVCProfileViewController: UIViewController, UITableViewDataSource, UITable
     func loadProfilePicture() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let imageURL: URL? = RestAPI.getInstance().retrieveProfilePicture()
             if imageURL == nil {
                 DispatchQueue.main.async {
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                 }
                 return
             }
@@ -83,7 +83,7 @@ class EVCProfileViewController: UIViewController, UITableViewDataSource, UITable
                 self.profilePic = UIImage(data: imageData!)
                 self.profilePic = EVCCommonMethods.image(with: self.profilePic, scaledTo: CGSize(width: CGFloat(100), height: CGFloat(100)))
                 self.profilePicView.image = self.profilePic
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
             })
         })
     }
@@ -92,13 +92,13 @@ class EVCProfileViewController: UIViewController, UITableViewDataSource, UITable
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             _ = RestAPI.getInstance().logout()
             UserDefaults.standard.removeObject(forKey: KEY_SCREENNAME)
             UserDefaults.standard.removeObject(forKey: KEY_PASSWORD)
             DispatchQueue.main.async {
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 _ = self.sideMenuViewController.navigationController?.popToRootViewController(animated: true)
             }
         })

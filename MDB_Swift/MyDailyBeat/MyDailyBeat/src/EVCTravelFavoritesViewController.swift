@@ -22,7 +22,7 @@ class EVCTravelFavoritesViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let dic2 = RestAPI.getInstance().getTravelFavorites()
             let arr = dic2.arrayValue.map({ (json) -> Int in
@@ -35,7 +35,7 @@ class EVCTravelFavoritesViewController: UITableViewController {
                 return value
             })
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })
@@ -89,11 +89,11 @@ class EVCTravelFavoritesViewController: UITableViewController {
     func remove(fromFavs url: String) {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             _ = RestAPI.getInstance().removeTravelFavoriteURL(url)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.loadData()
             })
         })

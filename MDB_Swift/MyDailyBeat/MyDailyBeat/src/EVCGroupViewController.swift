@@ -85,7 +85,7 @@ class EVCGroupViewController: UIViewController {
             
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let imgData: Data?
                 if let attachment = attachedImage {
@@ -96,12 +96,12 @@ class EVCGroupViewController: UIViewController {
                 let fileName: String = ASSET_FILENAME
                 let success: Bool = RestAPI.getInstance().write(written, withPictureData: imgData, andPictureName: fileName, to: self.group)
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     if success {
-                        self.view.makeToast("Upload successful!", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom)
                     }
                     else {
-                        self.view.makeToast("Upload failed!", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom)
                         return
                     }
                     self.refreshGroupData()
@@ -125,16 +125,16 @@ class EVCGroupViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let success: Bool = RestAPI.getInstance().delete(post: p)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.view.makeToast("Delete successful!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Delete successful!", duration: 3.5, position: .bottom)
                 }
                 else {
-                    self.view.makeToast("Delete failed!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Delete failed!", duration: 3.5, position: .bottom)
                     return
                 }
                 self.refreshGroupData()
@@ -147,9 +147,9 @@ class EVCGroupViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 self.group.posts = RestAPI.getInstance().getPostsFor(self.group)
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
             })
         })
     }
@@ -164,7 +164,7 @@ class EVCGroupViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let imageURL: URL? = RestAPI.getInstance().retrieveGroupPicture(for: self.group)
             if imageURL == nil {
@@ -173,7 +173,7 @@ class EVCGroupViewController: UIViewController {
             let imageData: Data? = RestAPI.getInstance().fetchImage(atRemoteURL: imageURL!)
             DispatchQueue.main.async(execute: {() -> Void in
                 // Update the UI
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.imageView.image = UIImage(data: imageData!)
             })
         })
@@ -187,11 +187,11 @@ class EVCGroupViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.refreshGroupData()
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.group.posts.sort(by: {(_ obj1: Post, _ obj2: Post) -> Bool in
                     let id1: Int = obj1.post_id
                     let id2: Int = obj2.post_id

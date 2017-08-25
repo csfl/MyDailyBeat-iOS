@@ -19,7 +19,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let success: Bool
             if self.mode == .fling_MODE {
@@ -30,9 +30,9 @@ class EVCFlingProfileCreatorViewController: UIViewController {
                 success = RestAPI.getInstance().saveFriendsProfile(for: RestAPI.getInstance().getCurrentUser(), andDescription: about)
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.view.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
                     if self.isModal {
                         self.dismiss(animated: true, completion: nil)
                     } else {
@@ -40,7 +40,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
                     }
                 }
                 else {
-                    self.view.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
                     return
                 }
             })
@@ -72,7 +72,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
     func loadData() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let profile: FlingProfile
             if self.mode == .fling_MODE {
@@ -83,7 +83,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
                 profile = RestAPI.getInstance().getFriendsProfile(for: RestAPI.getInstance().getCurrentUser())
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.aboutMeView.text = profile.aboutMe
             })
         })

@@ -165,12 +165,12 @@ extension RegistrationPersonalInfoViewController: UITextFieldDelegate {
             if let firstName = self.firstField.text, let lastName = self.lastField.text {
                 DispatchQueue.global().async {
                     DispatchQueue.main.sync {
-                        self.view.makeToastActivity(.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
                     }
                     let name = String(format: "%@ %@", firstName, lastName)
                     self.userExists = RestAPI.getInstance().doesUserExist(withName: name)
                     DispatchQueue.main.sync {
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                     }
                 }
             }

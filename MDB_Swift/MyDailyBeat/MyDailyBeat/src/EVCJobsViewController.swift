@@ -111,7 +111,7 @@ class EVCJobsViewController: UIViewController, CLLocationManagerDelegate, UITabl
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.resultsDictionary = RestAPI.getInstance().getJobs(onPage: self.currentPage, inLocation: self.currentZip, inRadius: radius, andType: type, andQuery: query)
             var resultsDic = self.resultsDictionary["results"].dictionaryValue
@@ -119,7 +119,7 @@ class EVCJobsViewController: UIViewController, CLLocationManagerDelegate, UITabl
             self.currentSet.append(contentsOf: temp)
             self.total = self.resultsDictionary["totalresults"].intValue
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.results.reloadData()
             })
         })

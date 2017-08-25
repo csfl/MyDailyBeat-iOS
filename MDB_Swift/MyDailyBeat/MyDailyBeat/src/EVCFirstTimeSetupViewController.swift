@@ -19,13 +19,13 @@ class EVCFirstTimeSetupViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             prefs.userPreferences = self.api.getUserPreferences()
             prefs.matchingPreferences = self.api.getMatchingPreferences()
             prefs.hobbiesPreferences = self.api.getHobbiesPreferencesForUser()
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.performSegue(withIdentifier: "PrefsSegue", sender: nil)
             })
         })

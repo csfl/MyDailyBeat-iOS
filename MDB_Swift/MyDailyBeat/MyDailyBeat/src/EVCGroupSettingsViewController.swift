@@ -37,7 +37,7 @@ class EVCGroupSettingsViewController: UITableViewController {
     func loadPrefs() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(.center)
             })
             let hobbies = RestAPI.getInstance().getHobbiesForGroup(self.group).map({ (json) -> Int in
                 return json["hby_ref_id"].intValue
@@ -48,7 +48,7 @@ class EVCGroupSettingsViewController: UITableViewController {
             }
             
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })
@@ -58,16 +58,16 @@ class EVCGroupSettingsViewController: UITableViewController {
     func deleteGroup() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(.center)
             })
             let success: Bool = RestAPI.getInstance().delete(group: self.group)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.view.makeToast("Group delete successful!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Group delete successful!", duration: 3.5, position: .bottom)
                 }
                 else {
-                    self.view.makeToast("Group delete failed!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Group delete failed!", duration: 3.5, position: .bottom)
                     return
                 }
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -79,16 +79,16 @@ class EVCGroupSettingsViewController: UITableViewController {
     func editGroup() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(.center)
             })
             let success: Bool = RestAPI.getInstance().setHobbiesforGroup(ID: self.group.groupID, self.frm)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.view.makeToast("Group editing successful!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Group editing successful!", duration: 3.5, position: .bottom)
                 }
                 else {
-                    self.view.makeToast("Group editing failed!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Group editing failed!", duration: 3.5, position: .bottom)
                     return
                 }
                 self.navigationController?.setNavigationBarHidden(false, animated: true)

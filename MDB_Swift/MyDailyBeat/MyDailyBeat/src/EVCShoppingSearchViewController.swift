@@ -34,7 +34,7 @@ class EVCShoppingSearchViewController: UIViewController, UITableViewDataSource, 
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let dic = RestAPI.getInstance().searchShoppingURLs(withQueryString: nil)
             let dic2 = RestAPI.getInstance().getShoppingFavorites()
@@ -52,7 +52,7 @@ class EVCShoppingSearchViewController: UIViewController, UITableViewDataSource, 
             })
             
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.mTableView.reloadData()
             })
         })
@@ -102,11 +102,11 @@ func numberOfSections(in tableView: UITableView) -> Int {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             _ = RestAPI.getInstance().addShoppingFavoriteURL(url)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.loadData()
             })
         })

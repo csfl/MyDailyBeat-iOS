@@ -25,7 +25,7 @@ class EVCPartnersTableViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             if self.mode == .friends_MODE {
                 self.favs = RestAPI.getInstance().getFriends()
@@ -39,7 +39,7 @@ class EVCPartnersTableViewController: UITableViewController {
                 self.favUsers.append(user)
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })

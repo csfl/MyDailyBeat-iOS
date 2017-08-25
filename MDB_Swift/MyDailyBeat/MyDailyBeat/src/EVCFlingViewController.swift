@@ -68,7 +68,16 @@ class EVCFlingViewController: EVCTabBarController, UITabBarControllerDelegate {
             dest.mode = self.mode
             dest.currentViewedUser = RestAPI.getInstance().getCurrentUser()
         } else if let dest = viewController as? EVCResourceLinksTableViewController {
-            dest.module = "Relationships"
+            let module: String
+            switch self.mode {
+            case .friends_MODE:
+                module = "Friends"
+            case .fling_MODE:
+                module = "Fling"
+            case .relationship_MODE:
+                module = "Relationships"
+            }
+            dest.module = module
         }
     }
 }

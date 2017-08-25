@@ -23,14 +23,14 @@ class RootViewController: RESideMenu, RESideMenuDelegate {
         super.viewWillAppear(animated)
         let SEC_PER_DAY: TimeInterval = 3600 * 24
         timer = DispatchTimer(interval: SEC_PER_DAY, closure: { (timer, count) in
-            var result = RestAPI.getInstance().validateToken()
+            let result = RestAPI.getInstance().validateToken()
             if !result {
                 let alertController = UIAlertController(title: "Session Expired", message: "Your session has expired. For your security, please login to MyDailyBeat.", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alertController.addAction(okAction)
-                self.navigationController?.present(alertController, animated: true, completion: { 
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     _ = self.navigationController?.popToRootViewController(animated: true)
                 })
+                alertController.addAction(okAction)
+                self.navigationController?.present(alertController, animated: true, completion: nil)
             }
         }, queue: DispatchQueue.global())
         timer?.start(true)
@@ -114,7 +114,7 @@ extension UIViewController {
     
     func performRequestToNetwork(request: @escaping (() -> ()), andOnComplete: (() -> ())) {
         let semaphore = DispatchSemaphore(value: 0)
-        self.view.makeToastActivity(.center)
+        UIApplication.shared.keyWindow?.makeToastActivity(.center)
         DispatchQueue.global().async {
             request()
             semaphore.signal()
@@ -122,6 +122,6 @@ extension UIViewController {
         
         semaphore.wait()
         andOnComplete()
-        self.view.hideToastActivity()
+        UIApplication.shared.keyWindow?.hideToastActivity()
     }
 }

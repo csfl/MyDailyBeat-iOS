@@ -137,11 +137,11 @@ extension RegistrationContactInfoViewController: UITextFieldDelegate {
             if let email = self.emailField.text {
                 DispatchQueue.global().async {
                     DispatchQueue.main.sync {
-                        self.view.makeToastActivity(.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
                     }
                     self.userWithEmailExists = RestAPI.getInstance().doesUserExist(withEmail: email)
                     DispatchQueue.main.sync {
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                     }
                 }
             }
@@ -149,11 +149,11 @@ extension RegistrationContactInfoViewController: UITextFieldDelegate {
             if let mobile = self.mobileField.text {
                 DispatchQueue.global().async {
                     DispatchQueue.main.sync {
-                        self.view.makeToastActivity(.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
                     }
                     self.userWithMobileExists = RestAPI.getInstance().doesUserExist(withMobile: mobile)
                     DispatchQueue.main.sync {
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                     }
                 }
             }

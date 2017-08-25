@@ -90,7 +90,7 @@ public class EVCUserSearchViewViewController: UIViewController, UISearchBarDeleg
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             switch self.type {
                 case .searchByScreenName:
@@ -103,7 +103,7 @@ public class EVCUserSearchViewViewController: UIViewController, UISearchBarDeleg
 
             self.removeUsersAlreadyInGroupFromSearchResults()
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.mTableView.reloadData()
             })
         })
@@ -170,19 +170,19 @@ public class EVCUserSearchViewViewController: UIViewController, UISearchBarDeleg
             
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let url: URL? = RestAPI.getInstance().retrieveProfilePictureForUser(withScreenName: (user.screenName))
                 if url != nil {
                     let imageData: Data? = RestAPI.getInstance().fetchImage(atRemoteURL: url!)
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                         cell?.imageView?.image = UIImage(data: imageData!)
                     })
                 }
                 else {
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                         cell?.imageView?.image = UIImage(named: "default-avatar.png")
                     })
                 }

@@ -29,7 +29,7 @@ class EVCChatroomTableViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.chatrooms = [MessageChatroom]()
             let temp = RestAPI.getInstance().getChatrooms() /* copyItems: true */
@@ -37,7 +37,7 @@ class EVCChatroomTableViewController: UITableViewController {
                 self.chatrooms = temp
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })

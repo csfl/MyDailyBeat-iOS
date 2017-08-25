@@ -30,7 +30,7 @@ class EVCFlingProfileViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             var favs: [FlingProfile] = []
             if self.mode == .friends_MODE {
@@ -42,7 +42,7 @@ class EVCFlingProfileViewController: UIViewController {
                 favs = RestAPI.getInstance().getRelationshipFavorites()
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 var loc = -1
                 let user: FlingProfile
                 if self.mode == .fling_MODE {
@@ -95,11 +95,11 @@ class EVCFlingProfileViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let chatroom: MessageChatroom? = RestAPI.getInstance().createChatroomForUsers(withScreenName: self.currentViewedUser.screenName)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.performSegue(withIdentifier: "SendMessageSegue", sender: chatroom)
             })
         })
@@ -255,7 +255,7 @@ class EVCFlingProfileViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.prefs = RestAPI.getInstance().getUserPreferences()
             self.matching = RestAPI.getInstance().getMatchingPreferences()
@@ -269,7 +269,7 @@ class EVCFlingProfileViewController: UIViewController {
                 favs = RestAPI.getInstance().getRelationshipFavorites()
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if favs.index(of: RestAPI.getInstance().getFlingProfile(for: self.currentViewedUser)) != NSNotFound {
                     if self.mode == .friends_MODE {
                         self.addFavsBtn.setTitle("Unfriend", for: .normal)

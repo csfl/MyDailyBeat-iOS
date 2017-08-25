@@ -28,7 +28,7 @@ class EVCTravelTableViewController: UITableViewController {
     func loadData() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             
             let dic2 = RestAPI.getInstance().getTravelFavorites()
@@ -43,7 +43,7 @@ class EVCTravelTableViewController: UITableViewController {
             })
             
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })
@@ -98,7 +98,7 @@ override func numberOfSections(in tableView: UITableView) -> Int {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             _ = RestAPI.getInstance().addTravelFavoriteURL(url)
             DispatchQueue.main.async(execute: {() -> Void in

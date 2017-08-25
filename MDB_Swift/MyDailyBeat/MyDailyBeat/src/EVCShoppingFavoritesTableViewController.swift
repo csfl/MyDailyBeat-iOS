@@ -30,7 +30,7 @@ class EVCShoppingFavoritesTableViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let dic = RestAPI.getInstance().searchShoppingURLs(withQueryString: nil)
             let dic2 = RestAPI.getInstance().getShoppingFavorites()
@@ -49,7 +49,7 @@ class EVCShoppingFavoritesTableViewController: UITableViewController {
             
             
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })
@@ -101,11 +101,11 @@ override func numberOfSections(in tableView: UITableView) -> Int {
     func remove(fromFavs url: String) {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             _ = RestAPI.getInstance().removeShoppingFavoriteURL(url)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.loadData()
             })
         })

@@ -166,13 +166,13 @@ extension RegistrationScreenNameViewController: UITextFieldDelegate {
                 // check if screenName exists
                 DispatchQueue.global().async {
                     DispatchQueue.main.sync {
-                        self.view.makeToastActivity(.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
                     }
                     if let enteredScreenName = self.screenNameField.text {
                         self.screenNameExists = RestAPI.getInstance().doesUserExist(withScreenName: enteredScreenName)
                     }
                     DispatchQueue.main.sync {
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                     }
                 }
             })

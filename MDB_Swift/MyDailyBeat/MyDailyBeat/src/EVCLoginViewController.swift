@@ -17,37 +17,51 @@ class EVCLoginViewController: UIViewController {
     @IBOutlet var passWordFeild: UITextField!
     @IBOutlet var userOuter: UITextField!
     @IBOutlet var passOuter: UITextField!
+    @IBOutlet var forgotUser: UIButton!
+    @IBOutlet var forgotPass: UIButton!
     var seguePerformer: ((String, Any?) -> ())? = nil
 
+    @IBAction func forgotUsername(_ sender: UIButton) {
+        let urlS = "http://www.mydailybeat.com/users/forgot/username"
+        let url = URL(string: urlS)!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func forgotPassword(_ sender: UIButton) {
+        let urlS = "http://www.mydailybeat.com/users/forgot/pass"
+        let url = URL(string: urlS)!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
     @IBAction func login(_ sender: Any) {
         let username: String = userNameFeild.text!
         let pass: String = passWordFeild.text!
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let verified = RestAPI.getInstance().isUserVerified(screenName: username, password: pass)
-            if verified {
+            if verified == .userVerified {
                 let success: Bool = RestAPI.getInstance().login(withScreenName: username, andPassword: pass)
                 if success {
                     DispatchQueue.main.async(execute: {() -> Void in
                         UserDefaults.standard.set(username, forKey: KEY_SCREENNAME)
                         UserDefaults.standard.set(pass, forKey: KEY_PASSWORD)
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                         if let performer = self.seguePerformer {
                             performer("LoginSegue", nil)
                         }
                     })
                 } else {
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.hideToastActivity()
-                        self.view.makeToast("Username and password do not match.", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.hideToastActivity()
+                        self.makeAlert(with: "Username and password do not match.", and: "")
                     })
                 }
-            } else {
+            } else if verified == .userNotVerified {
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     let alert = UIAlertController(title: "Verify your user information.", message: "You must verify your user information before logging in. Check the email you used to register.", preferredStyle: .alert)
                     let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(okaction)
@@ -57,6 +71,19 @@ class EVCLoginViewController: UIViewController {
                         }
                     })
                     alert.addAction(resendAction)
+                    self.present(alert, animated: true, completion: nil)
+                })
+            } else if verified == .userDoesntExist {
+                DispatchQueue.main.async(execute: {() -> Void in
+                    UIApplication.shared.keyWindow?.hideToastActivity()
+                    self.makeAlert(with: "Username and password do not match.", and: "")
+                })
+            } else {
+                DispatchQueue.main.async(execute: {() -> Void in
+                    UIApplication.shared.keyWindow?.hideToastActivity()
+                    let alert = UIAlertController(title: "Error", message: "An error occurred while logging in. Please try again. We apologize for the incovenience.", preferredStyle: .alert)
+                    let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okaction)
                     self.present(alert, animated: true, completion: nil)
                 })
             }
@@ -108,20 +135,20 @@ class EVCLoginViewController: UIViewController {
             let defPass: String? = UserDefaults.standard.string(forKey: KEY_PASSWORD)
             if defScreenName != nil {
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let verified = RestAPI.getInstance().isUserVerified(screenName: defScreenName!, password: defPass!)
-                if verified {
+                if verified == .userVerified {
                     _ = RestAPI.getInstance().login(withScreenName: defScreenName!, andPassword: defPass!)
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                         if let performer = self.seguePerformer {
                             performer("LoginSegue", nil)
                         }
                     })
-                } else {
+                } else if verified == .userNotVerified {
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                         let alert = UIAlertController(title: "Verify your user information.", message: "You must verify your user information before logging in. Check the email you used to register.", preferredStyle: .alert)
                         let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
                         alert.addAction(okaction)
@@ -133,12 +160,33 @@ class EVCLoginViewController: UIViewController {
                         alert.addAction(resendAction)
                         self.present(alert, animated: true, completion: nil)
                     })
+                } else if verified == .userDoesntExist {
+                    DispatchQueue.main.async(execute: {() -> Void in
+                        UIApplication.shared.keyWindow?.hideToastActivity()
+                        self.makeAlert(with: "Username and password do not match.", and: "")
+                    })
+                } else {
+                    DispatchQueue.main.async(execute: {() -> Void in
+                        UIApplication.shared.keyWindow?.hideToastActivity()
+                        let alert = UIAlertController(title: "Error", message: "An error occurred while logging in. Please try again. We apologize for the incovenience.", preferredStyle: .alert)
+                        let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(okaction)
+                        self.present(alert, animated: true, completion: nil)
+                    })
                 }
                 
             }
         })
     }
 
+    func makeAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+        self.navigationController?.present(alert, animated: true, completion: nil)
+    }
     
 }
 

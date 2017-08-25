@@ -55,18 +55,18 @@ class EVCMyHealthViewController: UIViewController {
                 
                 DispatchQueue.global().async(execute: {() -> Void in
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.makeToastActivity(ToastPosition.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                     })
                     if let imgurl = URL(string: provider.logoURL) {
                         let data = RestAPI.getInstance().fetchImage(atRemoteURL: imgurl)
                         let img = UIImage(data: data)
                         DispatchQueue.main.async(execute: {() -> Void in
-                            self.view.hideToastActivity()
+                            UIApplication.shared.keyWindow?.hideToastActivity()
                             self.prescripProviderLogoView.image = EVCCommonMethods.image(with: img!, scaledTo: CGSize(width: CGFloat(304), height: CGFloat(128)))
                         })
                     } else {
                         DispatchQueue.main.async(execute: {() -> Void in
-                            self.view.hideToastActivity()
+                            UIApplication.shared.keyWindow?.hideToastActivity()
                         })
                     }
                     
@@ -82,13 +82,13 @@ class EVCMyHealthViewController: UIViewController {
                 
                 DispatchQueue.global().async(execute: {() -> Void in
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.makeToastActivity(ToastPosition.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                     })
                     let imgurl = URL(string: portal.logoURL)
                     let data: Data? = RestAPI.getInstance().fetchImage(atRemoteURL: imgurl!)
                     let img = UIImage(data: data!)
                     DispatchQueue.main.async(execute: {() -> Void in
-                        self.view.hideToastActivity()
+                        UIApplication.shared.keyWindow?.hideToastActivity()
                         self.healthPortalLogoView.image = EVCCommonMethods.image(with: img!, scaledTo: CGSize(width: CGFloat(304), height: CGFloat(128)))
                     })
                 })

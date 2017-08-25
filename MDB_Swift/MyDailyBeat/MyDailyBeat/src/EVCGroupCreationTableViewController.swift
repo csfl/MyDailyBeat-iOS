@@ -33,7 +33,7 @@ class EVCGroupCreationTableViewController: UITableViewController {
 
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(.center)
             })
             var success: Bool = RestAPI.getInstance().createGroup(withName: name)
             if self.frm.hobbies.count > 0 {
@@ -49,12 +49,12 @@ class EVCGroupCreationTableViewController: UITableViewController {
                 }
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.view.makeToast("Group creation successful!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Group creation successful!", duration: 3.5, position: .bottom)
                 }
                 else {
-                    self.view.makeToast("Group creation failed!", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Group creation failed!", duration: 3.5, position: .bottom)
                     return
                 }
                 self.navigationController?.dismiss(animated: true, completion: nil)

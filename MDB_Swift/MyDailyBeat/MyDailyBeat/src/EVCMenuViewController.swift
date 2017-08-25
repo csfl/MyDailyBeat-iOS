@@ -131,7 +131,7 @@ class EVCMenuViewController: UIViewController, UITableViewDataSource, UITableVie
                                     })
                                     let result: Bool = RestAPI.getInstance().sendReferral(from: RestAPI.getInstance().getCurrentUser(), toPersonWithName: name!, andEmail: email!)
                                     DispatchQueue.main.async(execute: {() -> Void in
-                                        self.view.hideToastActivity()
+                                        UIApplication.shared.keyWindow?.hideToastActivity()
                                         if result {
                                             self.sideMenuViewController.contentViewController.view.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
                                         }

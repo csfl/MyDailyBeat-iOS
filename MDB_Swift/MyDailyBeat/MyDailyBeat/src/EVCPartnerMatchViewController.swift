@@ -69,7 +69,7 @@ class EVCPartnerMatchViewController: UITableViewController {
             let mobile: String = alert.textFields![3].text!
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 if screenName != "" {
                     // search by Screen Name
@@ -88,13 +88,13 @@ class EVCPartnerMatchViewController: UITableViewController {
                         // a user with that screenName does not exist.
                         if name != "" && email != "" {
                             DispatchQueue.main.async(execute: {() -> Void in
-                                self.view.hideToastActivity()
+                                UIApplication.shared.keyWindow?.hideToastActivity()
                                 self.refer(name, andEmail: email)
                             })
                         }
                         else {
                             DispatchQueue.main.async(execute: {() -> Void in
-                                self.view.hideToastActivity()
+                                UIApplication.shared.keyWindow?.hideToastActivity()
                                 self.referWithNoInformation()
                             })
                         }
@@ -133,13 +133,13 @@ class EVCPartnerMatchViewController: UITableViewController {
                     else {
                         if name != "" && email != "" {
                             DispatchQueue.main.async(execute: {() -> Void in
-                                self.view.hideToastActivity()
+                                UIApplication.shared.keyWindow?.hideToastActivity()
                                 self.refer(name, andEmail: email)
                             })
                         }
                         else {
                             DispatchQueue.main.async(execute: {() -> Void in
-                                self.view.hideToastActivity()
+                                UIApplication.shared.keyWindow?.hideToastActivity()
                                 self.referWithNoInformation()
                             })
                         }
@@ -170,16 +170,16 @@ class EVCPartnerMatchViewController: UITableViewController {
             let email: String = alert.textFields![1].text!
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let result: Bool = RestAPI.getInstance().sendReferral(from: RestAPI.getInstance().getCurrentUser(), toPersonWithName: name, andEmail: email)
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     if result {
-                        self.view.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
                     }
                     else {
-                        self.view.makeToast("Could not send referral.", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.makeToast("Could not send referral.", duration: 3.5, position: .bottom)
                     }
                 })
             })
@@ -194,16 +194,16 @@ class EVCPartnerMatchViewController: UITableViewController {
         _ = UIAlertAction(title: "Yes", style: .default) { (action) in
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let result: Bool = RestAPI.getInstance().sendReferral(from: RestAPI.getInstance().getCurrentUser(), toPersonWithName: name, andEmail: email)
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     if result {
-                        self.view.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
                     }
                     else {
-                        self.view.makeToast("Could not send referral.", duration: 3.5, position: .bottom)
+                        UIApplication.shared.keyWindow?.makeToast("Could not send referral.", duration: 3.5, position: .bottom)
                     }
                 })
             })
@@ -214,7 +214,7 @@ class EVCPartnerMatchViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             if self.mode == .fling_MODE {
                 self.partners = RestAPI.getInstance().getFlingProfiles()
@@ -239,7 +239,7 @@ class EVCPartnerMatchViewController: UITableViewController {
                 self.partnerUsers.append(user)
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })

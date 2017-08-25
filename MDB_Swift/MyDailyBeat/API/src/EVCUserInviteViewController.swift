@@ -58,13 +58,13 @@ public class EVCUserInviteViewController: UIViewController, UITextViewDelegate {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 
             })
             let success: Bool = RestAPI.getInstance().invite(self.recipient, toJoin: self.groupToInviteTo, by: self.sendingmethod, withMessage: self.inviteMessage)
             print("\(self.recipient)")
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
                     self.presentingViewController?.view.makeToast("Invite sent!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
                 }

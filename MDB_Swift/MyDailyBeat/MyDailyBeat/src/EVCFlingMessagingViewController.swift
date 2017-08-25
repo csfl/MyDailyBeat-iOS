@@ -27,11 +27,11 @@ class EVCFlingMessagingViewController: JSQMessagesViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.messages = RestAPI.getInstance().getMessagesForChatroom(withID: self.chatroom.chatroomID)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.collectionView.reloadData()
             })
         })
@@ -42,14 +42,14 @@ class EVCFlingMessagingViewController: JSQMessagesViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             _ = RestAPI.getInstance().writeMessage(message, inChatRoomWithID: self.chatroom.chatroomID)
             let m = VerveMessage()
             m.message = message
             m.screenName = self.senderId
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.messages.insert(m, at: 0)
                 self.collectionView.reloadData()
             })

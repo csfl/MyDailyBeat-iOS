@@ -118,22 +118,22 @@ class RegistrationViewController: UIPageViewController {
     func register() {
         DispatchQueue.global().async {
             DispatchQueue.main.sync {
-                self.view.makeToastActivity(.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(.center)
             }
             let user = RegistrationObject.getInstance()
             let success = RestAPI.getInstance().createUser(withFirstName: user.fname, andLastName: user.lname, andEmail: user.email, andMobile: user.mobile, andZip: user.zipcode, bornOn: user.birthday, with: user.screenName, and: user.password)
             DispatchQueue.main.sync {
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
             }
             if success {
                 DispatchQueue.main.sync {
                     do {
                         let toast = try self.view.toastViewForMessage("User created successfully. Logging in...", title: nil, image: nil, style: ToastManager.shared.style)
                         self.view.showToast(toast, duration: 2, position: .bottom, completion: { (finished) in
-                            self.view.makeToastActivity(.center)
+                            UIApplication.shared.keyWindow?.makeToastActivity(.center)
                         })
                     } catch {
-                        self.view.makeToastActivity(.center)
+                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
                     }
                 }
                 _ = RestAPI.getInstance().login(withScreenName: user.screenName, andPassword: user.password)
@@ -146,7 +146,7 @@ class RegistrationViewController: UIPageViewController {
                 }
             } else {
                 DispatchQueue.main.sync {
-                    self.view.makeToast("Failed to create user.")
+                    UIApplication.shared.keyWindow?.makeToast("Failed to create user.")
                 }
             }
         }

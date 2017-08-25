@@ -27,7 +27,7 @@ class EVCFeelingBlueTableViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.peeps = self.search.getUsersForFeelingBlue()
             var i = 0
@@ -42,7 +42,7 @@ class EVCFeelingBlueTableViewController: UITableViewController {
                 
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })

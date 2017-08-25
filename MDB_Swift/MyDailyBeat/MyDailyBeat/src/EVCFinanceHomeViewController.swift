@@ -36,7 +36,7 @@ class EVCFinanceHomeViewController: UIViewController, UITableViewDelegate, UITab
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.bankList = DataManager.getBanks()
             self.iconList = [UIImage?](repeating: nil, count: self.bankList.count)
@@ -55,7 +55,7 @@ class EVCFinanceHomeViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
             })
         })
@@ -141,7 +141,7 @@ func numberOfSections(in tableView: UITableView) -> Int {
             
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 if RestAPI.getInstance().doesAppExist(withTerm: "\(text) bank", andCountry: "US") {
                     let bank: VerveBankObject? = RestAPI.getInstance().getBankInfoForBank(withName: "\(text) bank", inCountry: "US")
@@ -149,7 +149,7 @@ func numberOfSections(in tableView: UITableView) -> Int {
                     DataManager.insertBank(info)
                 }
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     self.retrieveBanksData()
                 })
             })
@@ -169,11 +169,11 @@ func numberOfSections(in tableView: UITableView) -> Int {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             val = RestAPI.getInstance().doesAppExist(withTerm: name, andCountry: "US")
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
             })
         })
         return val

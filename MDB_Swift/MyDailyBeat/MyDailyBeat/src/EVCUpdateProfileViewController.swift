@@ -59,19 +59,19 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let imgData: Data? = UIImageJPEGRepresentation(img, 0.1)
             let url = info[UIImagePickerControllerReferenceURL] as? NSURL
             let fileName: String = url?.lastPathComponent ?? ASSET_FILENAME
             let success: Bool = RestAPI.getInstance().uploadProfilePicture(imgData!, withName: fileName)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.view.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
                 }
                 else {
-                    self.view.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
                     return
                 }
             })
@@ -138,7 +138,7 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
                     })
                     emailAlert.addAction(ok)
                     self.present(emailAlert, animated: true, completion: nil)
-                case 2:
+                case 3:
                     //mobile
                     let mobileAlert = UIAlertController(title: "Enter New Mobile Phone #", message: "Enter your new mobile phone number.", preferredStyle: .alert)
                     mobileAlert.addTextField(configurationHandler: { (textField) in
@@ -157,7 +157,7 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
                     })
                     mobileAlert.addAction(ok)
                     self.present(mobileAlert, animated: true, completion: nil)
-                case 3:
+                case 4:
                     //zipcode
                     let zipAlert = UIAlertController(title: "Enter New Zip Code", message: "Enter your zip code.", preferredStyle: .alert)
                     zipAlert.addTextField(configurationHandler: { (textField) in
@@ -190,16 +190,16 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
             current.zipcode = self.zipcode
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let result: Bool = RestAPI.getInstance().edit(current)
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     if result {
-                        self.view.makeToast("User edit successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                        UIApplication.shared.keyWindow?.makeToast("User edit successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
                     }
                     else {
-                        self.view.makeToast("User edit failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                        UIApplication.shared.keyWindow?.makeToast("User edit failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
                         return
                     }
                     _ = self.navigationController?.popViewController(animated: true)

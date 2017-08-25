@@ -44,7 +44,7 @@ class EVCPreferencesViewController: UITableViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.userPreferences = self.api.getUserPreferences()
             self.matchingPreferences = self.api.getMatchingPreferences()
@@ -61,7 +61,7 @@ class EVCPreferencesViewController: UITableViewController {
                 self.prefs.hobbiesPreferences = self.hobbiesPreferences
             }
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.reloadData()
             })
         })
@@ -79,12 +79,12 @@ class EVCPreferencesViewController: UITableViewController {
     func submit() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let success: Bool = self.api.save(self.prefs.userPreferences!, andMatchingPreferences: self.prefs.matchingPreferences!)
             let success2 = self.api.save(self.prefs.hobbiesPreferences!)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 if success && success2 {
                     if self.unwindSegueID == "RegularUnwindSegue" {
                         self.navigationController?.setNavigationBarHidden(true, animated: true)

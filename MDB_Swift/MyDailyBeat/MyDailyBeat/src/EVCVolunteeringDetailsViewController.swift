@@ -59,13 +59,13 @@ class EVCVolunteeringDetailsViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             let imgurl = URL(string: url)
             let data: Data? = RestAPI.getInstance().fetchImage(atRemoteURL: imgurl!)
             let img = UIImage(data: data!)
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.imageView.image = EVCCommonMethods.image(with: img!, scaledTo: CGSize(width: CGFloat(128), height: CGFloat(128)))
             })
         })

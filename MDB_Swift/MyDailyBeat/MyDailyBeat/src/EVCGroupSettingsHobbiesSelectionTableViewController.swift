@@ -54,7 +54,7 @@ override func numberOfSections(in tableView: UITableView) -> Int {
             }
         }
         if count > 3 {
-            self.view.makeToast("Cannot select more than 3 hobbies", duration: 3.5, position: .bottom)
+            UIApplication.shared.keyWindow?.makeToast("Cannot select more than 3 hobbies", duration: 3.5, position: .bottom)
         }
         else {
             if self.field.isOptionSelected(at: UInt(indexPath.row)) {

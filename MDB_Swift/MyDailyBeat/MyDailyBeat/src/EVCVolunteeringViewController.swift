@@ -51,14 +51,14 @@ class EVCVolunteeringViewController: UITableViewController, CLLocationManagerDel
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             self.resultsDictionary = RestAPI.getInstance().getOpportunitiesInLocation(self.currentZip, onPage: self.currentPage)
             let temp = self.resultsDictionary["opportunities"].arrayValue
             self.currentSet.append(contentsOf: temp)
             self.total = self.resultsDictionary["resultsSize"].intValue
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
                 self.tableView.reloadData()
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             })

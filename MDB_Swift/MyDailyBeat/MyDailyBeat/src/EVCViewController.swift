@@ -37,8 +37,8 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
         if arr.isEmpty || arr2.isEmpty || arr3.isEmpty {
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToast("Fine Tuning Your Experience...", duration: 3.5, position: .bottom)
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToast("Fine Tuning Your Experience...", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                     // initialize db
                 if arr.isEmpty {
@@ -74,9 +74,9 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 }
                 
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     UserDefaults.standard.set(false, forKey: "LOAD_BANK_IMAGES")
-                    self.view.makeToast("Fine Tuning Complete", duration: 3.5, position: .bottom)
+                    UIApplication.shared.keyWindow?.makeToast("Fine Tuning Complete", duration: 3.5, position: .bottom)
                     if GBVersionTracking.isFirstLaunchEver() {
                         self.showModalSegue(withIdentifier: "FirstTimeSetupSegue", andSender: self)
                     }
@@ -158,16 +158,16 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
                                 let email = fields[1].text
                                 DispatchQueue.global().async(execute: {() -> Void in
                                     DispatchQueue.main.async(execute: {() -> Void in
-                                        self.view.makeToastActivity(ToastPosition.center)
+                                        UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                                     })
                                     let result: Bool = RestAPI.getInstance().sendReferral(from: RestAPI.getInstance().getCurrentUser(), toPersonWithName: name!, andEmail: email!)
                                     DispatchQueue.main.async(execute: {() -> Void in
-                                        self.view.hideToastActivity()
+                                        UIApplication.shared.keyWindow?.hideToastActivity()
                                         if result {
-                                            self.view.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
+                                            UIApplication.shared.keyWindow?.makeToast("Referral sent successfully!", duration: 3.5, position: .bottom)
                                         }
                                         else {
-                                            self.view.makeToast("Could not send referral.", duration: 3.5, position: .bottom)
+                                            UIApplication.shared.keyWindow?.makeToast("Could not send referral.", duration: 3.5, position: .bottom)
                                         }
                                     })
                                 })

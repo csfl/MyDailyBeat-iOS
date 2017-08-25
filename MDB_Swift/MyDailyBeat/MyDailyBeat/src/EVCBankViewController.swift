@@ -50,11 +50,11 @@ class EVCBankViewController: UIViewController {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.makeToastActivity(ToastPosition.center)
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
             val = RestAPI.getInstance().doesAppExist(withTerm: name, andCountry: "US")
             DispatchQueue.main.async(execute: {() -> Void in
-                self.view.hideToastActivity()
+                UIApplication.shared.keyWindow?.hideToastActivity()
             })
         })
         return val
@@ -69,13 +69,13 @@ class EVCBankViewController: UIViewController {
             
             DispatchQueue.global().async(execute: {() -> Void in
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.makeToastActivity(ToastPosition.center)
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
                 })
                 let imgurl = URL(string: self.bank.iconURL)
                 let data: Data? = RestAPI.getInstance().fetchImage(atRemoteURL: imgurl!)
                 let img = UIImage(data: data!)
                 DispatchQueue.main.async(execute: {() -> Void in
-                    self.view.hideToastActivity()
+                    UIApplication.shared.keyWindow?.hideToastActivity()
                     self.imgView.image = EVCCommonMethods.image(with: img!, scaledTo: CGSize(width: CGFloat(120), height: CGFloat(120)))
                     self.bankNameLbl.text = self.bank.appName
                 })
