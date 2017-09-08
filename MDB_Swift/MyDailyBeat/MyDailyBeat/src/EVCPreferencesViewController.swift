@@ -92,7 +92,10 @@ class EVCPreferencesViewController: UITableViewController {
                     self.performSegue(withIdentifier: self.unwindSegueID, sender: self)
                 }
                 else {
-                    print("Failed")
+                    let alertController = UIAlertController(title: "Error saving preferences", message: "Please attempt to save your preferences again. If problems continue, please contact us.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
             })
         })
@@ -125,9 +128,9 @@ class EVCPreferencesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                cell.textLabel?.text = "User Preferences"
+                cell.textLabel?.text = "Who I Am"
             } else if indexPath.row == 1 {
-                cell.textLabel?.text = "Matching Preferences"
+                cell.textLabel?.text = "Matching Preferences (for MyFling and MyRelationships)"
             } else {
                 cell.textLabel?.text = "Hobbies Preferences"
             }
@@ -136,6 +139,7 @@ class EVCPreferencesViewController: UITableViewController {
             cell.textLabel?.text = "Save"
             cell.accessoryType = .none
         }
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
     

@@ -16,6 +16,15 @@ class EVCUserPreferencesViewController: UITableViewController {
         self.tableView.register(ToggleTableViewCell.self, forCellReuseIdentifier: "ToggleCell")
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = backButton
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        label.text = "Press Back to Proceed"
+        label.textColor = UIColor.gray
+        label.sizeToFit()
+        label.textAlignment = .center
+        label.frame.size.width = self.view.frame.width
+        label.frame.size.height *= 2
+        self.tableView.tableHeaderView = label
     }
     
     func cancel() {
@@ -125,7 +134,8 @@ class EVCUserPreferencesViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             } else {
-                cell.textLabel?.text = "Willing to Connect Anonymously"
+                cell.textLabel?.text = "Willing to have other members who are feeling blue connect with me"
+                cell.textLabel?.numberOfLines = 0
                 cell.update()
                 cell.toggleSwitch.setOn(self.prefs.willingToConnectAnonymously, animated: true)
                 cell.onToggle = {

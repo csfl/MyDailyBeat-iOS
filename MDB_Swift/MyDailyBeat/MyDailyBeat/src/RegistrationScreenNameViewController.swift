@@ -24,9 +24,23 @@ class RegistrationScreenNameViewController: UIViewController {
         // empty by default
     }
     
+    func makeAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+        self.navigationController?.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func next(_ sender: Any) {
         guard isValidInput else {
             // TODO: Show error messages here.
+            if !allFieldsFilledIn {
+                self.makeAlert(with: "Form not complete.", and: "One or more of the fields on this page are not filled in. Please enter valid input for all the fields on this page.")
+            } else {
+                self.makeAlert(with: "Invalid Password", and: "The password you have selected is invalid. Please select a different password. The password must be a minimum of 6 characters long with at least one letter and one number, with a maximum length of 20 characters.")
+            }
             return
         }
         let obj = RegistrationObject.getInstance()
@@ -90,21 +104,6 @@ class RegistrationScreenNameViewController: UIViewController {
         self.pass2Outer.layer.borderWidth = 2
         self.pass2Outer.layer.cornerRadius = 8
         self.pass2Outer.clipsToBounds = true
-        
-        self.screenNameField.layer.borderColor = UIColor.white.cgColor
-        self.screenNameField.layer.borderWidth = 2
-        self.screenNameField.layer.cornerRadius = 8
-        self.screenNameField.clipsToBounds = true
-        
-        self.passField.layer.borderColor = UIColor.white.cgColor
-        self.passField.layer.borderWidth = 2
-        self.passField.layer.cornerRadius = 8
-        self.passField.clipsToBounds = true
-        
-        self.pass2Field.layer.borderColor = UIColor.white.cgColor
-        self.pass2Field.layer.borderWidth = 2
-        self.pass2Field.layer.cornerRadius = 8
-        self.pass2Field.clipsToBounds = true
         
         screenNameField.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
         passField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])

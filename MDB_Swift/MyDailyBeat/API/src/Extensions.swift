@@ -35,5 +35,9 @@ extension String {
         
         return digest
     }
+    
+    func localize() -> String {
+        return NSLocalizedString(self, comment: "")
+    }
 
 }

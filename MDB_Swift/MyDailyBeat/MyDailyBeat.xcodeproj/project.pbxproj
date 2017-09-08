@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014B0D741F57AA47009F4322 /* InnerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B0D731F57AA47009F4322 /* InnerTextField.swift */; };
 		015C4FE21EE7856D002D2118 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4FE11EE7856D002D2118 /* TextFieldTableViewCell.swift */; };
 		015C4FE41EF22314002D2118 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4FE31EF22314002D2118 /* Utilities.swift */; };
 		0199816F1EFCA79D009003FD /* AboutDetailsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199816D1EFCA79D009003FD /* AboutDetailsWebViewController.swift */; };
@@ -195,6 +196,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		014B0D731F57AA47009F4322 /* InnerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerTextField.swift; sourceTree = "<group>"; };
 		015C4FE11EE7856D002D2118 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		015C4FE31EF22314002D2118 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		0199816D1EFCA79D009003FD /* AboutDetailsWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutDetailsWebViewController.swift; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 				769F391F1E84957200E036CA /* AboutViewController.swift */,
 				762289261EDBDD1200F6B586 /* AboutDetailsViewController.swift */,
 				0199816D1EFCA79D009003FD /* AboutDetailsWebViewController.swift */,
+				014B0D731F57AA47009F4322 /* InnerTextField.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				7637EFA21E6C762500C5BC51 /* DataManager.swift in Sources */,
 				767487721E5B21100024331F /* EVCPostView.swift in Sources */,
 				767487861E5BC4540024331F /* RootViewController.swift in Sources */,
+				014B0D741F57AA47009F4322 /* InnerTextField.swift in Sources */,
 				7628FD511E80AEE40053D04A /* RegistrationViewController.swift in Sources */,
 				767487821E5B21100024331F /* EVCVolunteeringDetailsViewController.swift in Sources */,
 				7674876F1E5B21100024331F /* EVCMyHealthViewController.swift in Sources */,

@@ -56,7 +56,7 @@ class EVCLoginViewController: UIViewController {
                 } else {
                     DispatchQueue.main.async(execute: {() -> Void in
                         UIApplication.shared.keyWindow?.hideToastActivity()
-                        self.makeAlert(with: "Username and password do not match.", and: "")
+                        self.makeAlert(with: "Incorrect password.", and: "")
                     })
                 }
             } else if verified == .userNotVerified {
@@ -76,7 +76,7 @@ class EVCLoginViewController: UIViewController {
             } else if verified == .userDoesntExist {
                 DispatchQueue.main.async(execute: {() -> Void in
                     UIApplication.shared.keyWindow?.hideToastActivity()
-                    self.makeAlert(with: "Username and password do not match.", and: "")
+                    self.makeAlert(with: "A user account with this username and password does not exist. Please verify that you have entered your username and password correctly, and that you have verified your account information.", and: "")
                 })
             } else {
                 DispatchQueue.main.async(execute: {() -> Void in
@@ -113,13 +113,6 @@ class EVCLoginViewController: UIViewController {
         passOuter.layer.borderWidth = 2
         passOuter.layer.borderColor = UIColor.white.cgColor
         passOuter.layer.cornerRadius = 8
-        userNameFeild.layer.borderColor = UIColor.white.cgColor
-        userNameFeild.layer.cornerRadius = 8
-        userNameFeild.clipsToBounds = true
-        passWordFeild.clipsToBounds = true
-        passWordFeild.layer.borderWidth = 2
-        passWordFeild.layer.borderColor = UIColor.white.cgColor
-        passWordFeild.layer.cornerRadius = 8
         
     }
 
@@ -163,7 +156,7 @@ class EVCLoginViewController: UIViewController {
                 } else if verified == .userDoesntExist {
                     DispatchQueue.main.async(execute: {() -> Void in
                         UIApplication.shared.keyWindow?.hideToastActivity()
-                        self.makeAlert(with: "Username and password do not match.", and: "")
+                        self.makeAlert(with: "A user account with this username and password does not exist. Please verify that you have entered your username and password correctly, and that you have verified your account information.", and: "")
                     })
                 } else {
                     DispatchQueue.main.async(execute: {() -> Void in

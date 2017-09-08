@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uig-ql-G1h">
-                    <rect key="frame" x="38" y="200" width="299" height="50"/>
+                    <rect key="frame" x="38" y="230" width="299" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="NaD-br-mEj"/>
                     </constraints>
@@ -36,14 +36,14 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Screen Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkX-KP-uqA">
-                    <rect key="frame" x="87" y="201" width="249" height="48"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Screen Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkX-KP-uqA" customClass="InnerTextField" customModule="MyDailyBeat" customModuleProvider="target">
+                    <rect key="frame" x="87" y="231" width="249" height="48"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                 </textField>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Olo-9i-tX0">
-                    <rect key="frame" x="128" y="425" width="120" height="48"/>
+                    <rect key="frame" x="128" y="455" width="120" height="48"/>
                     <color key="backgroundColor" red="0.0" green="0.71372549019999998" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="Te7-z3-hsA"/>
@@ -60,7 +60,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Sign Up!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsk-d9-mo3">
-                    <rect key="frame" x="126" y="139" width="125" height="38"/>
+                    <rect key="frame" x="126" y="169" width="125" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="Mg3-Cj-r7G"/>
                     </constraints>
@@ -69,13 +69,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eTh-wF-3zu">
-                    <rect key="frame" x="38" y="350" width="299" height="50"/>
+                    <rect key="frame" x="38" y="380" width="299" height="50"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1fr-F4-eR0">
-                    <rect key="frame" x="38" y="275" width="299" height="50"/>
+                    <rect key="frame" x="38" y="305" width="299" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="MgD-yz-rO5"/>
                     </constraints>
@@ -83,38 +83,38 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U7N-xg-29z">
-                    <rect key="frame" x="87" y="276" width="249" height="48"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U7N-xg-29z" customClass="InnerTextField" customModule="MyDailyBeat" customModuleProvider="target">
+                    <rect key="frame" x="87" y="306" width="249" height="48"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SRT-04-BfG">
-                    <rect key="frame" x="87" y="351" width="249" height="48"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SRT-04-BfG" customClass="InnerTextField" customModule="MyDailyBeat" customModuleProvider="target">
+                    <rect key="frame" x="87" y="381" width="249" height="48"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eKf-sa-1kA">
-                    <rect key="frame" x="39" y="201" width="48" height="48"/>
+                    <rect key="frame" x="39" y="231" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="eKf-sa-1kA" secondAttribute="height" multiplier="1:1" id="vdA-tc-QYb"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="smF-qY-0wJ">
-                    <rect key="frame" x="39" y="351" width="48" height="48"/>
+                    <rect key="frame" x="39" y="381" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="smF-qY-0wJ" secondAttribute="height" multiplier="1:1" id="Iue-U8-CVP"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-px-7eE">
-                    <rect key="frame" x="39" y="276" width="48" height="48"/>
+                    <rect key="frame" x="39" y="306" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="5Fb-px-7eE" secondAttribute="height" multiplier="1:1" id="JOM-zm-ZrG"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-Zh-4Jx">
-                    <rect key="frame" x="123" y="0.0" width="128" height="128"/>
+                    <rect key="frame" x="123" y="30" width="128" height="128"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hsg-Zh-4Jx" secondAttribute="height" multiplier="1:1" id="5N8-Dm-9lx"/>
                         <constraint firstAttribute="height" constant="128" id="g5Y-0a-82c"/>
@@ -132,7 +132,7 @@
                 <constraint firstItem="U7N-xg-29z" firstAttribute="bottom" secondItem="1fr-F4-eR0" secondAttribute="bottom" constant="-1" id="85G-QU-IhN"/>
                 <constraint firstItem="uig-ql-G1h" firstAttribute="centerX" secondItem="Lk2-EF-y0l" secondAttribute="centerX" id="8Vi-ap-Nnp"/>
                 <constraint firstItem="5Fb-px-7eE" firstAttribute="bottom" secondItem="1fr-F4-eR0" secondAttribute="bottom" constant="-1" id="Ap8-zq-HNG"/>
-                <constraint firstItem="hsg-Zh-4Jx" firstAttribute="top" secondItem="Lk2-EF-y0l" secondAttribute="top" id="B8o-Ah-BZJ"/>
+                <constraint firstItem="hsg-Zh-4Jx" firstAttribute="top" secondItem="Lk2-EF-y0l" secondAttribute="top" constant="30" id="B8o-Ah-BZJ"/>
                 <constraint firstItem="SRT-04-BfG" firstAttribute="height" secondItem="eTh-wF-3zu" secondAttribute="height" constant="-2" id="BTz-tO-AA0"/>
                 <constraint firstItem="smF-qY-0wJ" firstAttribute="width" secondItem="smF-qY-0wJ" secondAttribute="height" multiplier="1:1" id="Da3-oR-bRh"/>
                 <constraint firstItem="U7N-xg-29z" firstAttribute="top" secondItem="1fr-F4-eR0" secondAttribute="top" constant="1" id="FhZ-WN-fxk"/>

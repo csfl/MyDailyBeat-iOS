@@ -83,7 +83,7 @@ override func numberOfSections(in tableView: UITableView) -> Int {
         if url.hasPrefix("http://") || url.hasPrefix("https://") {
             fullURL = "\(url)"
         } else {
-            fullURL = "http://\(url)"
+            fullURL = "https://\(url)"
         }
         UIApplication.shared.open(URL(string: fullURL)!, options: [:], completionHandler: nil)
     }

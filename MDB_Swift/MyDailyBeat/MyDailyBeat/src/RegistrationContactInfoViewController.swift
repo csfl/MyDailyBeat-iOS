@@ -25,9 +25,25 @@ class RegistrationContactInfoViewController: UIViewController {
         // empty by default
     }
     
+    func makeAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+        self.navigationController?.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func next(_ sender: Any) {
         guard isValidInput else {
             // TODO: Show error messages here.
+            if !allFieldsFilledIn {
+                self.makeAlert(with: "Form not complete.", and: "One or more of the fields on this page are not filled in. Please enter valid input for all the fields on this page.")
+            } else if userWithEmailExists {
+                self.makeAlert(with: "User Already Exists", and: "A user with this email address already exists. Please select a different email address.")
+            } else {
+                self.makeAlert(with: "User Already Exists", and: "A user with this mobile phone number already exists. Please select a different mobile phone number.")
+            }
             return
         }
         let obj = RegistrationObject.getInstance()
@@ -87,21 +103,6 @@ class RegistrationContactInfoViewController: UIViewController {
         self.zipOuter.layer.borderWidth = 2
         self.zipOuter.layer.cornerRadius = 8
         self.zipOuter.clipsToBounds = true
-        
-        self.emailField.layer.borderColor = UIColor.white.cgColor
-        self.emailField.layer.borderWidth = 2
-        self.emailField.layer.cornerRadius = 8
-        self.emailField.clipsToBounds = true
-        
-        self.mobileField.layer.borderColor = UIColor.white.cgColor
-        self.mobileField.layer.borderWidth = 2
-        self.mobileField.layer.cornerRadius = 8
-        self.mobileField.clipsToBounds = true
-        
-        self.zipField.layer.borderColor = UIColor.white.cgColor
-        self.zipField.layer.borderWidth = 2
-        self.zipField.layer.cornerRadius = 8
-        self.zipField.clipsToBounds = true
         
         emailField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
         mobileField.attributedPlaceholder = NSAttributedString(string: "Mobile Phone #", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])

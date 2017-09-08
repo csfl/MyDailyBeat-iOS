@@ -31,9 +31,23 @@ class RegistrationPersonalInfoViewController: UIViewController {
         // empty by default
     }
     
+    func makeAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+        self.navigationController?.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func next(_ sender: Any) {
         guard isValidInput else {
             // TODO: Show error messages here.
+            if !allFieldsFilledIn {
+                self.makeAlert(with: "Form not complete.", and: "One or more of the fields on this page are not filled in. Please enter valid input for all the fields on this page.")
+            } else {
+                self.makeAlert(with: "Invalid Username", and: "A user with this username already exists. Please select a different username.")
+            }
             return
         }
         let obj = RegistrationObject.getInstance()
@@ -93,21 +107,6 @@ class RegistrationPersonalInfoViewController: UIViewController {
         self.dobOuter.layer.borderWidth = 2
         self.dobOuter.layer.cornerRadius = 8
         self.dobOuter.clipsToBounds = true
-        
-        self.firstField.layer.borderColor = UIColor.white.cgColor
-        self.firstField.layer.borderWidth = 2
-        self.firstField.layer.cornerRadius = 8
-        self.firstField.clipsToBounds = true
-        
-        self.lastField.layer.borderColor = UIColor.white.cgColor
-        self.lastField.layer.borderWidth = 2
-        self.lastField.layer.cornerRadius = 8
-        self.lastField.clipsToBounds = true
-        
-        self.dobField.layer.borderColor = UIColor.white.cgColor
-        self.dobField.layer.borderWidth = 2
-        self.dobField.layer.cornerRadius = 8
-        self.dobField.clipsToBounds = true
         
         firstField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
         lastField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])

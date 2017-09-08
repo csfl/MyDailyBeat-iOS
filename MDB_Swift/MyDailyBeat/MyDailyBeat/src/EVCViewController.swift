@@ -73,15 +73,26 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
                     }
                 }
                 
+                
+                
                 DispatchQueue.main.async(execute: {() -> Void in
                     UIApplication.shared.keyWindow?.hideToastActivity()
                     UserDefaults.standard.set(false, forKey: "LOAD_BANK_IMAGES")
                     UIApplication.shared.keyWindow?.makeToast("Fine Tuning Complete", duration: 3.5, position: .bottom)
-                    if GBVersionTracking.isFirstLaunchEver() {
-                        self.showModalSegue(withIdentifier: "FirstTimeSetupSegue", andSender: self)
-                    }
                 })
             })
+        }
+        
+        DispatchQueue.global().async {
+            let userPrefsExist = RestAPI.getInstance().preferencesExistForUser()
+            let matchingPrefsExist = RestAPI.getInstance().matchingPreferencesExistForUser()
+            let hobbiesPrefsExist = RestAPI.getInstance().hobbiesPreferencesExistForUser()
+            
+            DispatchQueue.main.async {
+                if !userPrefsExist || !matchingPrefsExist || !hobbiesPrefsExist {
+                    self.showModalSegue(withIdentifier: "FirstTimeSetupSegue", andSender: self)
+                }
+            }
         }
         
     }

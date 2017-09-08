@@ -104,10 +104,12 @@ override func numberOfSections(in tableView: UITableView) -> Int {
 
     func openURLinBrowser(_ url: String, useWWW: Bool = true) {
         let fullURL: String
-        if useWWW {
-            fullURL = "http://www.\(url)"
+        if url.hasPrefix("http://") || url.hasPrefix("https://") {
+            fullURL = "\(url)"
+        } else if useWWW {
+            fullURL = "https://www.\(url)"
         } else {
-            fullURL = "http://\(url)"
+            fullURL = "https://\(url)"
         }
         UIApplication.shared.open(URL(string: fullURL)!, options: [:], completionHandler: nil)
     }
