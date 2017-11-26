@@ -20,4 +20,10 @@ public class VervePreferences: NSObject, FXForm {
                 [FXFormFieldTitle: "Save", FXFormFieldHeader: "", FXFormFieldAction: "submit:"]
         ]
     }
+    
+    override public init() {
+        self.userPreferences = VerveUserPreferences()
+        self.matchingPreferences = VerveMatchingPreferences()
+        self.hobbiesPreferences = HobbiesPreferences()
+    }
 }

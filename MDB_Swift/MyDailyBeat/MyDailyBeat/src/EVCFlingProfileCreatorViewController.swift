@@ -14,7 +14,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
     var isModal: Bool = false
     var mode: REL_MODE = .friends_MODE
 
-    func save() {
+    @objc func save() {
         let about: String = self.aboutMeView.text
         
         DispatchQueue.global().async(execute: {() -> Void in

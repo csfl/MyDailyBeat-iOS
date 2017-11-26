@@ -15,6 +15,9 @@ import RESideMenu
 class EVCPreferencesViewController: UITableViewController {
     var api: RestAPI!
     var prefs: VervePreferences = VervePreferences()
+    var userEdited = false
+    var matchEdited = false
+    var hobbyEdited = false
     var userPreferences: VerveUserPreferences!
     var matchingPreferences: VerveMatchingPreferences!
     var hobbiesPreferences: HobbiesPreferences!
@@ -77,36 +80,58 @@ class EVCPreferencesViewController: UITableViewController {
     }
 
     func submit() {
-        DispatchQueue.global().async(execute: {() -> Void in
-            DispatchQueue.main.async(execute: {() -> Void in
-                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
-            })
-            let success: Bool = self.api.save(self.prefs.userPreferences!, andMatchingPreferences: self.prefs.matchingPreferences!)
-            let success2 = self.api.save(self.prefs.hobbiesPreferences!)
-            DispatchQueue.main.async(execute: {() -> Void in
-                UIApplication.shared.keyWindow?.hideToastActivity()
-                if success && success2 {
-                    if self.unwindSegueID == "RegularUnwindSegue" {
-                        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        if userEdited && matchEdited && hobbyEdited {
+            DispatchQueue.global().async(execute: {() -> Void in
+                DispatchQueue.main.async(execute: {() -> Void in
+                    UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
+                })
+                let success: Bool = self.api.save(self.prefs.userPreferences!, andMatchingPreferences: self.prefs.matchingPreferences!)
+                let success2 = self.api.save(self.prefs.hobbiesPreferences!)
+                DispatchQueue.main.async(execute: {() -> Void in
+                    UIApplication.shared.keyWindow?.hideToastActivity()
+                    if success && success2 {
+                        if self.unwindSegueID == "RegularUnwindSegue" {
+                            self.navigationController?.setNavigationBarHidden(true, animated: true)
+                        }
+                        UserDefaults.standard.set(false, forKey: "IN_SETUP")
+                        self.performSegue(withIdentifier: self.unwindSegueID, sender: self)
                     }
-                    self.performSegue(withIdentifier: self.unwindSegueID, sender: self)
-                }
-                else {
-                    let alertController = UIAlertController(title: "Error saving preferences", message: "Please attempt to save your preferences again. If problems continue, please contact us.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                }
+                    else {
+                        let alertController = UIAlertController(title: "Error saving preferences", message: "Please attempt to save your preferences again. If problems continue, please contact us.", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                })
             })
-        })
+        } else if !userEdited {
+            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information about who you are. Please press 'Who I Am'. If problems continue, please contact us.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else if !matchEdited {
+            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information to help us match people to you in the MyFling and MyRelationships modules. Please press 'Matching Preferences (for MyFling and MyRelationships)'. If problems continue, please contact us.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information about your hobbies. Please press 'Hobbies Preferences'. If problems continue, please contact us.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func backToPrefs(sender: UIStoryboardSegue) {
         if sender.source is EVCUserPreferencesViewController {
             self.prefs.userPreferences = self.userPreferences
+            self.userEdited = true
         } else if sender.source is EVCMatchingPreferencesViewController {
+            self.matchEdited = true
             self.prefs.matchingPreferences = self.matchingPreferences
         } else {
+            self.hobbyEdited = true
             self.prefs.hobbiesPreferences = self.hobbiesPreferences
         }
         self.reloadData()
@@ -170,10 +195,22 @@ class EVCPreferencesViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? EVCUserPreferencesViewController {
             dest.prefs = self.userPreferences
+            dest.firstTimePrefs = self.prefs
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = self.unwindSegueID
+            }
         } else if let dest = segue.destination as? EVCMatchingPreferencesViewController {
             dest.prefs = self.matchingPreferences
+            dest.firstTimePrefs = self.prefs
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = self.unwindSegueID
+            }
         } else if let dest = segue.destination as? EVCHobbiesPreferencesViewController {
             dest.prefs = self.hobbiesPreferences
+            dest.firstTimePrefs = self.prefs
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = self.unwindSegueID
+            }
         }
     }
     

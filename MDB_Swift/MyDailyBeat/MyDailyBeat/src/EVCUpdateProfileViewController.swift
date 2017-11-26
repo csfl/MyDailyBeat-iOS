@@ -76,13 +76,13 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
                 }
             })
         })
-        self.dismiss(animated: true, completion: { _ in })
+        self.dismiss(animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            self.present(self.imgPicker, animated: true, completion: { _ in })
+            self.present(self.imgPicker, animated: true, completion: nil)
         }
         else if indexPath.section == 1 {
             switch indexPath.row {

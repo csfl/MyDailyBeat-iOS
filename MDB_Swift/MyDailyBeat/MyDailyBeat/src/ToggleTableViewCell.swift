@@ -20,7 +20,7 @@ class ToggleTableViewCell: UITableViewCell {
         self.accessoryView = self.toggleSwitch
     }
     
-    func valueChanged() {
+    @objc func valueChanged() {
         self.onToggle()
     }
 

@@ -10,24 +10,28 @@ import UIKit
 import API
 class EVCUserPreferencesViewController: UITableViewController {
     var prefs: VerveUserPreferences!
+    var firstTimePrefs: VervePreferences = VervePreferences()
+    var endsegue = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.register(ToggleTableViewCell.self, forCellReuseIdentifier: "ToggleCell")
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = backButton
+        if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonAction))
+            self.navigationItem.rightBarButtonItem = nextButton
+        }
+        self.navigationItem.title = "Who I Am"
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        label.text = "Press Back to Proceed"
-        label.textColor = UIColor.gray
-        label.sizeToFit()
-        label.textAlignment = .center
-        label.frame.size.width = self.view.frame.width
-        label.frame.size.height *= 2
-        self.tableView.tableHeaderView = label
     }
     
-    func cancel() {
+    @objc func nextButtonAction() {
+        
+        self.performSegue(withIdentifier: "FirstTimeSetupSegue", sender: self)
+    }
+    
+    @objc func cancel() {
         self.performSegue(withIdentifier: "BackToPrefsSegue", sender: self)
     }
 
@@ -39,15 +43,15 @@ class EVCUserPreferencesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return GenderRefList.getInstance().list.keys.count
+            return GenderRefList.getInstance().list.keys.count - 1
         } else if section == 1 {
-            return MaritalRefList.getInstance().list.keys.count
+            return MaritalRefList.getInstance().list.keys.count - 1
         } else if section == 2 {
-            return EthnicityRefList.getInstance().list.keys.count
+            return EthnicityRefList.getInstance().list.keys.count - 1
         } else if section == 3 {
-            return ReligionRefList.getInstance().list.keys.count
+            return ReligionRefList.getInstance().list.keys.count - 1
         } else if section == 4 {
-            return DrinkerRefList.getInstance().list.keys.count
+            return DrinkerRefList.getInstance().list.keys.count - 1
         } else {
             return 3
         }
@@ -178,8 +182,15 @@ class EVCUserPreferencesViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        self.firstTimePrefs.userPreferences = self.prefs
         if let dest = segue.destination as? EVCPreferencesViewController {
-            dest.userPreferences = self.prefs
+            dest.prefs = self.firstTimePrefs
+        } else if let dest = segue.destination as? EVCMatchingPreferencesViewController {
+            dest.firstTimePrefs = self.firstTimePrefs
+            dest.prefs = dest.firstTimePrefs.matchingPreferences
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = self.endsegue
+            }
         }
     }
     

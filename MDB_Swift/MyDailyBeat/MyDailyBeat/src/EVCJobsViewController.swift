@@ -192,11 +192,11 @@ class EVCJobsViewController: UIViewController, CLLocationManagerDelegate, UITabl
             self.view.addSubview(imgView!)
             UIView.animate(withDuration: 0.2, animations: {() -> Void in
                 imgView?.alpha = 1
-            }, completion: { _ in })
+            }, completion: nil)
         }
         self.view.addSubview(filterView)
         UIView.animate(withDuration: 0.2, animations: {() -> Void in
             self.filterView.alpha = 1
-        }, completion: { _ in })
+        }, completion: nil)
     }
 }

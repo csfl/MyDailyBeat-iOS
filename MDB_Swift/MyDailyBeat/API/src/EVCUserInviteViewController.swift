@@ -54,7 +54,7 @@ public class EVCUserInviteViewController: UIViewController, UITextViewDelegate {
         self.inviteMessage = textView.text
     }
 
-    func sendInvite() {
+    @objc func sendInvite() {
         
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in

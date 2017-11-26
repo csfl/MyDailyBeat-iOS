@@ -75,42 +75,27 @@ class RegistrationViewController: UIPageViewController {
     }
     */
     func messageViewController(_ index: Int) -> EVCRegistrationMessageViewController {
-        let message: String
-        let image: UIImage
-        if index == 0 {
-            message = "You are about to join a vibrant community for older adults..."
-            image = #imageLiteral(resourceName: "community-ico-screen-1")
-        } else if index == 1 {
-            message = "Let this be the place you come to everyday to help manage your life..."
-            image = #imageLiteral(resourceName: "calendar-ico-screen-2")
-        } else {
-            message = "Keep yourself engaged, socialize, and stay connected!"
-            image = #imageLiteral(resourceName: "messages-ico-screen-3")
-        }
+        let message: String = "You are about to join a vibrant community for older adults..."
+        let image: UIImage = #imageLiteral(resourceName: "community-ico-screen-1")
         let vc = EVCRegistrationMessageViewController()
         vc.message = message
         vc.index = index
         vc.image = image
         vc.nextPage = {
             self.presentationIndex = index + 1
-            if index < 2 {
-                let next = self.messageViewController(index + 1)
-                self.setViewControllers([next], direction: .forward, animated: true, completion: nil)
-            } else {
-                let next = RegistrationScreenNameViewController()
-                next.nextPage = {
-                    let personalInfo = RegistrationPersonalInfoViewController()
-                    personalInfo.nextPage = {
-                        let contactInfo = RegistrationContactInfoViewController()
-                        contactInfo.nextPage = {
-                            self.register()
-                        }
-                        self.setViewControllers([contactInfo], direction: .forward, animated: true, completion: nil)
+            let next = RegistrationScreenNameViewController()
+            next.nextPage = {
+                let personalInfo = RegistrationPersonalInfoViewController()
+                personalInfo.nextPage = {
+                    let contactInfo = RegistrationContactInfoViewController()
+                    contactInfo.nextPage = {
+                        self.register()
                     }
-                    self.setViewControllers([personalInfo], direction: .forward, animated: true, completion: nil)
+                    self.setViewControllers([contactInfo], direction: .forward, animated: true, completion: nil)
                 }
-                self.setViewControllers([next], direction: .forward, animated: true, completion: nil)
+                self.setViewControllers([personalInfo], direction: .forward, animated: true, completion: nil)
             }
+            self.setViewControllers([next], direction: .forward, animated: true, completion: nil)
         }
         return vc
     }
@@ -140,9 +125,7 @@ class RegistrationViewController: UIPageViewController {
                 UserDefaults.standard.set(user.screenName, forKey: KEY_SCREENNAME)
                 UserDefaults.standard.set(user.password, forKey: KEY_PASSWORD)
                 DispatchQueue.main.sync {
-                    if let performer = self.seguePerformer {
-                        performer("LoginSegue", nil)
-                    }
+                    self.performSegue(withIdentifier: "LoginSegue", sender: nil)
                 }
             } else {
                 DispatchQueue.main.sync {

@@ -156,7 +156,7 @@ class EVCFlingProfileViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func call() {
+    @objc func call() {
         let dialstring: String = currentViewedUser.mobile
         self.makeCall(dialstring)
     }
@@ -244,7 +244,7 @@ class EVCFlingProfileViewController: UIViewController {
                 style?.firstLineHeadIndent = 10.0
                 style?.headIndent = 10.0
                 style?.tailIndent = -10.0
-                let attrText = NSAttributedString(string: prof.aboutMe, attributes: [NSParagraphStyleAttributeName: style!])
+                let attrText = NSAttributedString(string: prof.aboutMe, attributes: [NSAttributedStringKey.paragraphStyle: style!])
                 self.aboutMeView.attributedText = attrText
                 self.aboutMeView.numberOfLines = 0
             })

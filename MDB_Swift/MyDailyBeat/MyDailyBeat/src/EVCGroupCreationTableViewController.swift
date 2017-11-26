@@ -27,7 +27,7 @@ class EVCGroupCreationTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
-    func createGroup() {
+    @objc func createGroup() {
         UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
         let name: String = frm.groupName
 

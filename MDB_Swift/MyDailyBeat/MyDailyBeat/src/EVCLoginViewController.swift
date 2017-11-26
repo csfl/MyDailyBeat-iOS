@@ -49,9 +49,7 @@ class EVCLoginViewController: UIViewController {
                         UserDefaults.standard.set(username, forKey: KEY_SCREENNAME)
                         UserDefaults.standard.set(pass, forKey: KEY_PASSWORD)
                         UIApplication.shared.keyWindow?.hideToastActivity()
-                        if let performer = self.seguePerformer {
-                            performer("LoginSegue", nil)
-                        }
+                        self.performSegue(withIdentifier: "LoginSegue", sender: nil)
                     })
                 } else {
                     DispatchQueue.main.async(execute: {() -> Void in
@@ -97,8 +95,8 @@ class EVCLoginViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view?.backgroundColor = UIColor.clear
-        userNameFeild.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        passWordFeild.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
+        userNameFeild.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        passWordFeild.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         userNameFeild.delegate = self
         passWordFeild.delegate = self
         userNameFeild.backgroundColor = UIColor.white.withAlphaComponent(0.7)
@@ -135,9 +133,7 @@ class EVCLoginViewController: UIViewController {
                     _ = RestAPI.getInstance().login(withScreenName: defScreenName!, andPassword: defPass!)
                     DispatchQueue.main.async(execute: {() -> Void in
                         UIApplication.shared.keyWindow?.hideToastActivity()
-                        if let performer = self.seguePerformer {
-                            performer("LoginSegue", nil)
-                        }
+                        self.performSegue(withIdentifier: "LoginSegue", sender: nil)
                     })
                 } else if verified == .userNotVerified {
                     DispatchQueue.main.async(execute: {() -> Void in

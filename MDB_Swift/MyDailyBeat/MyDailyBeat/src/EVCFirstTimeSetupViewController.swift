@@ -37,6 +37,7 @@ class EVCFirstTimeSetupViewController: UIViewController {
         // Do any additional setup after loading the view.
         api = RestAPI.getInstance()
         self.message.text = "Welcome to MyDailyBeat! Before you begin, please set the following preferences."
+        UserDefaults.standard.set(true, forKey: "IN_SETUP")
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     

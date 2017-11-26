@@ -23,6 +23,7 @@ class RegistrationPersonalInfoViewController: UIViewController {
     @IBOutlet var dobOuter: UITextField!
     @IBOutlet var picker: UIDatePicker!
     @IBOutlet var toolbar: UIToolbar!
+    
     @IBOutlet var doneButton: UIBarButtonItem!
     var userExists = false
     var birthDay: Date = Date()
@@ -41,12 +42,15 @@ class RegistrationPersonalInfoViewController: UIViewController {
     }
     
     @IBAction func next(_ sender: Any) {
+        if let firstName = self.firstField.text, let lastName = self.lastField.text {
+            self.userExistsCheck(firstName: firstName, lastName: lastName)
+        }
         guard isValidInput else {
             // TODO: Show error messages here.
             if !allFieldsFilledIn {
                 self.makeAlert(with: "Form not complete.", and: "One or more of the fields on this page are not filled in. Please enter valid input for all the fields on this page.")
             } else {
-                self.makeAlert(with: "Invalid Username", and: "A user with this username already exists. Please select a different username.")
+                self.makeAlert(with: "User already exists", and: "A user of this name already exists. Please attempt to login, or use the 'Forgot Username/Forgot Password' tools if you have forgotten your login information.")
             }
             return
         }
@@ -69,7 +73,7 @@ class RegistrationPersonalInfoViewController: UIViewController {
     
     var allFieldsFilledIn: Bool {
         var result = false
-        if self.firstField.text != nil && self.lastField.text != nil && self.dobField.text != nil {
+        if let name = self.firstField.text, let pass1 = self.lastField.text, let pass2 = self.dobField.text, name != "" && pass1 != "" && pass2 != "" {
             result = true
         }
         return result
@@ -108,9 +112,9 @@ class RegistrationPersonalInfoViewController: UIViewController {
         self.dobOuter.layer.cornerRadius = 8
         self.dobOuter.clipsToBounds = true
         
-        firstField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        lastField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        dobField.attributedPlaceholder = NSAttributedString(string: "Date of Birth", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
+        firstField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        lastField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        dobField.attributedPlaceholder = NSAttributedString(string: "Date of Birth", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         dobField.inputView = self.picker
         dobField.inputAccessoryView = self.toolbar
         self.picker.datePickerMode = .date
@@ -121,7 +125,7 @@ class RegistrationPersonalInfoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func didSelect(picker: UIDatePicker) {
+    @objc func didSelect(picker: UIDatePicker) {
         self.birthDay = picker.date
         let formatter = DateFormatter()
         formatter.timeStyle = .none
@@ -148,6 +152,11 @@ class RegistrationPersonalInfoViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func userExistsCheck(firstName: String, lastName: String) {
+        let name = String(format: "%@ %@", firstName, lastName)
+        self.userExists = RestAPI.getInstance().doesUserExist(withName: name)
+    }
 
 }
 
@@ -163,14 +172,7 @@ extension RegistrationPersonalInfoViewController: UITextFieldDelegate {
         } else {
             if let firstName = self.firstField.text, let lastName = self.lastField.text {
                 DispatchQueue.global().async {
-                    DispatchQueue.main.sync {
-                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
-                    }
-                    let name = String(format: "%@ %@", firstName, lastName)
-                    self.userExists = RestAPI.getInstance().doesUserExist(withName: name)
-                    DispatchQueue.main.sync {
-                        UIApplication.shared.keyWindow?.hideToastActivity()
-                    }
+                    self.userExistsCheck(firstName: firstName, lastName: lastName)
                 }
             }
         }

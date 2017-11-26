@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,6 +27,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFW-jP-hbX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rqw-WN-xkE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="q9O-pF-alP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="q9O-pF-alP" firstAttribute="centerY" secondItem="rqw-WN-xkE" secondAttribute="centerY" id="BDW-4e-YBm"/>
+                            <constraint firstItem="q9O-pF-alP" firstAttribute="centerX" secondItem="rqw-WN-xkE" secondAttribute="centerX" id="RK4-3b-Wes"/>
+                            <constraint firstItem="q9O-pF-alP" firstAttribute="leading" secondItem="rqw-WN-xkE" secondAttribute="leading" id="kvY-Cz-9kk"/>
+                            <constraint firstItem="q9O-pF-alP" firstAttribute="top" secondItem="rqw-WN-xkE" secondAttribute="top" id="p9w-Dh-kMg"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uig-ql-G1h">
                     <rect key="frame" x="38" y="230" width="299" height="50"/>
                     <constraints>
@@ -60,7 +79,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Sign Up!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsk-d9-mo3">
-                    <rect key="frame" x="126" y="169" width="125" height="38"/>
+                    <rect key="frame" x="128" y="169" width="121" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="Mg3-Cj-r7G"/>
                     </constraints>
@@ -124,6 +143,7 @@
             <constraints>
                 <constraint firstItem="eTh-wF-3zu" firstAttribute="leading" secondItem="Lk2-EF-y0l" secondAttribute="leading" constant="38" id="03b-Cs-kX2"/>
                 <constraint firstItem="eKf-sa-1kA" firstAttribute="bottom" secondItem="uig-ql-G1h" secondAttribute="bottom" constant="-1" id="1fS-RH-Lg3"/>
+                <constraint firstItem="bFW-jP-hbX" firstAttribute="leading" secondItem="Lk2-EF-y0l" secondAttribute="leading" id="2XL-x7-ibe"/>
                 <constraint firstItem="smF-qY-0wJ" firstAttribute="top" secondItem="eTh-wF-3zu" secondAttribute="top" constant="1" id="3fM-We-zeS"/>
                 <constraint firstAttribute="trailing" secondItem="eTh-wF-3zu" secondAttribute="trailing" constant="38" id="3v9-mV-xoO"/>
                 <constraint firstItem="1fr-F4-eR0" firstAttribute="width" secondItem="uig-ql-G1h" secondAttribute="width" id="43s-qZ-GIm"/>
@@ -135,9 +155,11 @@
                 <constraint firstItem="hsg-Zh-4Jx" firstAttribute="top" secondItem="Lk2-EF-y0l" secondAttribute="top" constant="30" id="B8o-Ah-BZJ"/>
                 <constraint firstItem="SRT-04-BfG" firstAttribute="height" secondItem="eTh-wF-3zu" secondAttribute="height" constant="-2" id="BTz-tO-AA0"/>
                 <constraint firstItem="smF-qY-0wJ" firstAttribute="width" secondItem="smF-qY-0wJ" secondAttribute="height" multiplier="1:1" id="Da3-oR-bRh"/>
+                <constraint firstItem="bFW-jP-hbX" firstAttribute="centerX" secondItem="Lk2-EF-y0l" secondAttribute="centerX" id="FSp-wv-BKG"/>
                 <constraint firstItem="U7N-xg-29z" firstAttribute="top" secondItem="1fr-F4-eR0" secondAttribute="top" constant="1" id="FhZ-WN-fxk"/>
                 <constraint firstItem="SRT-04-BfG" firstAttribute="bottom" secondItem="eTh-wF-3zu" secondAttribute="bottom" constant="-1" id="I78-ln-CDd"/>
                 <constraint firstItem="SRT-04-BfG" firstAttribute="leading" secondItem="smF-qY-0wJ" secondAttribute="trailing" id="Mgl-8h-CuR"/>
+                <constraint firstItem="bFW-jP-hbX" firstAttribute="centerY" secondItem="Lk2-EF-y0l" secondAttribute="centerY" id="NiB-Uy-tXy"/>
                 <constraint firstItem="Lsk-d9-mo3" firstAttribute="centerX" secondItem="Lk2-EF-y0l" secondAttribute="centerX" constant="1" id="OPq-KP-98l"/>
                 <constraint firstItem="eKf-sa-1kA" firstAttribute="top" secondItem="uig-ql-G1h" secondAttribute="top" constant="1" id="PDq-fT-HPY"/>
                 <constraint firstItem="eTh-wF-3zu" firstAttribute="top" secondItem="1fr-F4-eR0" secondAttribute="bottom" constant="25" id="QC5-Rq-SzD"/>
@@ -150,10 +172,12 @@
                 <constraint firstItem="eKf-sa-1kA" firstAttribute="leading" secondItem="uig-ql-G1h" secondAttribute="leading" constant="1" id="Y3v-DR-SmT"/>
                 <constraint firstItem="U7N-xg-29z" firstAttribute="trailing" secondItem="1fr-F4-eR0" secondAttribute="trailing" constant="-1" id="YOR-BP-2w1"/>
                 <constraint firstItem="uig-ql-G1h" firstAttribute="top" secondItem="Lsk-d9-mo3" secondAttribute="bottom" constant="23" id="YPu-Fb-e40"/>
+                <constraint firstAttribute="trailing" secondItem="bFW-jP-hbX" secondAttribute="trailing" id="ZHT-qQ-q4u"/>
                 <constraint firstItem="smF-qY-0wJ" firstAttribute="width" secondItem="smF-qY-0wJ" secondAttribute="height" multiplier="1:1" id="ZT9-ga-X6R"/>
                 <constraint firstItem="U7N-xg-29z" firstAttribute="height" secondItem="1fr-F4-eR0" secondAttribute="height" constant="-2" id="Zli-uB-Rka"/>
                 <constraint firstItem="5Fb-px-7eE" firstAttribute="top" secondItem="1fr-F4-eR0" secondAttribute="top" constant="1" id="aqW-TJ-qHN"/>
                 <constraint firstItem="FkX-KP-uqA" firstAttribute="height" secondItem="uig-ql-G1h" secondAttribute="height" constant="-2" id="e9J-Fa-r66"/>
+                <constraint firstItem="bFW-jP-hbX" firstAttribute="height" secondItem="Lk2-EF-y0l" secondAttribute="height" id="eFA-D0-y0m"/>
                 <constraint firstItem="1fr-F4-eR0" firstAttribute="height" secondItem="eTh-wF-3zu" secondAttribute="height" id="emc-DX-DfG"/>
                 <constraint firstItem="U7N-xg-29z" firstAttribute="leading" secondItem="5Fb-px-7eE" secondAttribute="trailing" id="f4U-tx-CmB"/>
                 <constraint firstItem="hsg-Zh-4Jx" firstAttribute="centerX" secondItem="Lk2-EF-y0l" secondAttribute="centerX" id="fhc-GN-Agx"/>
@@ -178,6 +202,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Background" width="5184" height="3456"/>
         <image name="Logo" width="120" height="120"/>
         <image name="password" width="23" height="23"/>
     </resources>

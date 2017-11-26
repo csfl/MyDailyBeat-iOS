@@ -8,26 +8,55 @@
 
 import UIKit
 import API
+import Toast_Swift
 class EVCHobbiesPreferencesViewController: UITableViewController {
 
     var prefs: HobbiesPreferences!
+    var firstTimePrefs: VervePreferences = VervePreferences()
+    var endsegue = ""
+    var api: RestAPI!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        api = RestAPI.getInstance()
         self.tableView.register(ToggleTableViewCell.self, forCellReuseIdentifier: "ToggleCell")
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = backButton
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        label.text = "Press Back to Proceed"
-        label.textColor = UIColor.gray
-        label.sizeToFit()
-        label.textAlignment = .center
-        label.frame.size.width = self.view.frame.width
-        label.frame.size.height *= 2
-        self.tableView.tableHeaderView = label
+        if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+            let nextButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(nextButtonAction))
+            self.navigationItem.rightBarButtonItem = nextButton
+        }
+        self.navigationItem.title = "Hobbies Preferences"
     }
     
-    func cancel() {
+    @objc func nextButtonAction() {
+        self.firstTimePrefs.hobbiesPreferences = self.prefs
+        DispatchQueue.global().async(execute: {() -> Void in
+            DispatchQueue.main.async(execute: {() -> Void in
+                UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
+            })
+            let success: Bool = self.api.save(self.firstTimePrefs.userPreferences!, andMatchingPreferences: self.firstTimePrefs.matchingPreferences!)
+            let success2 = self.api.save(self.firstTimePrefs.hobbiesPreferences!)
+            DispatchQueue.main.async(execute: {() -> Void in
+                UIApplication.shared.keyWindow?.hideToastActivity()
+                if success && success2 {
+                    if self.endsegue == "RegularUnwindSegue" {
+                        self.navigationController?.setNavigationBarHidden(true, animated: true)
+                    }
+                    UserDefaults.standard.set(false, forKey: "IN_SETUP")
+                    self.performSegue(withIdentifier: self.endsegue, sender: self)
+                }
+                else {
+                    let alertController = UIAlertController(title: "Error saving preferences", message: "Please attempt to save your preferences again. If problems continue, please contact us.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            })
+        })
+        
+    }
+    
+    @objc func cancel() {
         self.performSegue(withIdentifier: "BackToPrefsSegue", sender: self)
     }
     
@@ -47,7 +76,7 @@ class EVCHobbiesPreferencesViewController: UITableViewController {
         let list = HobbiesRefList.getInstance()
         cell.textLabel?.text = list.list[indexPath.row + 1]!
         cell.update()
-        cell.toggleSwitch.setOn(self.prefs.hobbies[indexPath.row + 1]!, animated: true)
+        cell.toggleSwitch.setOn(self.prefs.hobbies[indexPath.row + 1] ?? false, animated: true)
         cell.onToggle = {
             self.prefs.hobbies[indexPath.row + 1] = cell.toggleSwitch.isOn
         }

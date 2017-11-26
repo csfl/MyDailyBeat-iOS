@@ -18,6 +18,8 @@ class RegistrationContactInfoViewController: UIViewController {
     @IBOutlet var emailOuter: UITextField!
     @IBOutlet var mobileOuter: UITextField!
     @IBOutlet var zipOuter: UITextField!
+    @IBOutlet var toolbar: UIToolbar!
+    @IBOutlet var toolbar2: UIToolbar!
     var userWithEmailExists = false
     var userWithMobileExists = false
     var tipView: EasyTipView =  EasyTipView(text: "ToolTip")
@@ -35,6 +37,9 @@ class RegistrationContactInfoViewController: UIViewController {
     }
     
     @IBAction func next(_ sender: Any) {
+        if let mobile = self.mobileField.text {
+            self.userExistsCheck(mobile)
+        }
         guard isValidInput else {
             // TODO: Show error messages here.
             if !allFieldsFilledIn {
@@ -65,7 +70,7 @@ class RegistrationContactInfoViewController: UIViewController {
     
     var allFieldsFilledIn: Bool {
         var result = false
-        if let _ = self.emailField.text, let _ = self.mobileField.text, let _ = self.zipField.text {
+        if let name = self.emailField.text, let pass1 = self.mobileField.text, let pass2 = self.zipField.text, name != "" && pass1 != "" && pass2 != "" {
             result = true
         }
         return result
@@ -104,9 +109,11 @@ class RegistrationContactInfoViewController: UIViewController {
         self.zipOuter.layer.cornerRadius = 8
         self.zipOuter.clipsToBounds = true
         
-        emailField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        mobileField.attributedPlaceholder = NSAttributedString(string: "Mobile Phone #", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        zipField.attributedPlaceholder = NSAttributedString(string: "Zip Code", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        mobileField.attributedPlaceholder = NSAttributedString(string: "Mobile Phone #", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        zipField.attributedPlaceholder = NSAttributedString(string: "Zip Code", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        self.zipField.inputAccessoryView = self.toolbar
+        self.mobileField.inputAccessoryView = self.toolbar2
         // Do any additional setup after loading the view.
     }
     
@@ -124,12 +131,24 @@ class RegistrationContactInfoViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func userExistsCheck(_ mobile: String) {
+        self.userWithMobileExists = RestAPI.getInstance().doesUserExist(withMobile: mobile)
+    }
+    
+    @IBAction func done() {
+        self.zipField.resignFirstResponder()
+    }
 
+    @IBAction func done2() {
+        self.mobileField.resignFirstResponder()
+    }
 }
 
 extension RegistrationContactInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.backgroundColor = UIColor.white
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -149,13 +168,7 @@ extension RegistrationContactInfoViewController: UITextFieldDelegate {
         } else if textField == self.mobileField {
             if let mobile = self.mobileField.text {
                 DispatchQueue.global().async {
-                    DispatchQueue.main.sync {
-                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
-                    }
-                    self.userWithMobileExists = RestAPI.getInstance().doesUserExist(withMobile: mobile)
-                    DispatchQueue.main.sync {
-                        UIApplication.shared.keyWindow?.hideToastActivity()
-                    }
+                    self.userExistsCheck(mobile)
                 }
             }
         } else {

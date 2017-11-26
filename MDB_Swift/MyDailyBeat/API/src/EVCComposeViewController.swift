@@ -36,7 +36,7 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
         picker.allowsEditing = true
         picker.sourceType = .photoLibrary
         if !self.isHasAttachment {
-            self.present(picker, animated: true, completion: { _ in })
+            self.present(picker, animated: true, completion: nil)
         }
         else {
             let myAlertView = UIAlertController(title: "", message: "This post already has an attachment!", preferredStyle: .alert)
@@ -48,7 +48,7 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
                     // no need to do anything here
                 })
             myAlertView.addAction(okAction)
-            self.present(myAlertView, animated: true, completion: { _ in })
+            self.present(myAlertView, animated: true, completion: nil)
         }
     }
 
@@ -64,10 +64,10 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
                         // no need to do anything here
                     })
                 myAlertView.addAction(okAction)
-                self.present(myAlertView, animated: true, completion: { _ in })
+                self.present(myAlertView, animated: true, completion: nil)
             }
             else {
-                self.present(picker, animated: true, completion: { _ in })
+                self.present(picker, animated: true, completion: nil)
             }
         }
         else {
@@ -80,7 +80,7 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
                     // no need to do anything here
                 })
             myAlertView.addAction(okAction)
-            self.present(myAlertView, animated: true, completion: { _ in })
+            self.present(myAlertView, animated: true, completion: nil)
         }
     }
 
@@ -108,11 +108,11 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
         self.navigationItem.rightBarButtonItem = postBarButton
     }
 
-    func cancelPost() {
-        self.dismiss(animated: true, completion: { _ in })
+    @objc func cancelPost() {
+        self.dismiss(animated: true, completion: nil)
     }
 
-    func writePost() {
+    @objc func writePost() {
         self.postText = self.postTextView.text
         if let handler = completionHandler {
             handler(self.postText, self.attachedImage)
@@ -150,7 +150,7 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
     }
 
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: { _ in })
+        picker.dismiss(animated: true, completion: nil)
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

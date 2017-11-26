@@ -29,8 +29,8 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.mTableView.separatorStyle = .none
         api = RestAPI.getInstance()
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         let arr = DataManager.getBanks()
         let arr2 = DataManager.getHealthPortals()
         let arr3 = DataManager.getPrescriptionProviders()

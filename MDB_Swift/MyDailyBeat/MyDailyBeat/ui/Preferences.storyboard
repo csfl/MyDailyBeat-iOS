@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gqj-Av-Vhk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gqj-Av-Vhk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,6 +50,7 @@
                     </tableView>
                     <connections>
                         <segue destination="oUR-0g-dgr" kind="unwind" identifier="BackToPrefsSegue" unwindAction="backToPrefsWithSender:" id="Lli-Nc-hnA"/>
+                        <segue destination="fzR-DP-X5F" kind="show" identifier="FirstTimeSetupSegue" id="PHY-on-fQ1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaS-m8-IKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -72,6 +73,7 @@
                     </tableView>
                     <connections>
                         <segue destination="kBW-c0-EH8" kind="unwind" identifier="BackToPrefsSegue" unwindAction="backToPrefsWithSender:" id="6hw-fJ-oot"/>
+                        <segue destination="kBW-c0-EH8" kind="unwind" identifier="ModalUnwindSegue" unwindAction="modalUnwindSegueWithSegue:" id="nlE-IS-Wsz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wG2-2K-H5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -94,6 +96,7 @@
                     </tableView>
                     <connections>
                         <segue destination="YpM-qT-e1S" kind="unwind" identifier="BackToPrefsSegue" unwindAction="backToPrefsWithSender:" id="dmB-bK-DFi"/>
+                        <segue destination="ibd-M7-Lao" kind="show" identifier="FirstTimeSetupSegue" id="Irw-rJ-lpG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHp-aB-V6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -102,4 +105,8 @@
             <point key="canvasLocation" x="1142" y="-302"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="PHY-on-fQ1"/>
+        <segue reference="Irw-rJ-lpG"/>
+    </inferredMetricsTieBreakers>
 </document>

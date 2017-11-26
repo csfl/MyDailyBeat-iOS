@@ -76,7 +76,7 @@ class EVCGroupSettingsViewController: UITableViewController {
         })
     }
     
-    func editGroup() {
+    @objc func editGroup() {
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.makeToastActivity(.center)

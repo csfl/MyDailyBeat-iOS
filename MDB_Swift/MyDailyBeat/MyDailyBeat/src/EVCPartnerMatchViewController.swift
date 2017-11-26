@@ -36,7 +36,7 @@ class EVCPartnerMatchViewController: UITableViewController {
         self.retrievePartners()
     }
 
-    func searchFriend() {
+    @objc func searchFriend() {
         let alert = UIAlertController(title: "Add Friend", message: "Fill in at least 1 of the following fields:", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Screen Name"

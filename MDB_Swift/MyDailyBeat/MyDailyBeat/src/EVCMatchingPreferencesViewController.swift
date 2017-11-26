@@ -11,23 +11,27 @@ import API
 class EVCMatchingPreferencesViewController: UITableViewController {
 
     var prefs: VerveMatchingPreferences!
+    var firstTimePrefs: VervePreferences = VervePreferences()
+    var endsegue = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.register(ToggleTableViewCell.self, forCellReuseIdentifier: "ToggleCell")
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = backButton
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        label.text = "Press Back to Proceed"
-        label.textColor = UIColor.gray
-        label.sizeToFit()
-        label.textAlignment = .center
-        label.frame.size.width = self.view.frame.width
-        label.frame.size.height *= 2
-        self.tableView.tableHeaderView = label
+        if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+            let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonAction))
+            self.navigationItem.rightBarButtonItem = nextButton
+        }
+        self.navigationItem.title = "Matching Preferences"
     }
     
-    func cancel() {
+    @objc func nextButtonAction() {
+        
+        self.performSegue(withIdentifier: "FirstTimeSetupSegue", sender: self)
+    }
+    
+    @objc func cancel() {
         self.performSegue(withIdentifier: "BackToPrefsSegue", sender: self)
     }
     
@@ -126,7 +130,9 @@ class EVCMatchingPreferencesViewController: UITableViewController {
         } else if indexPath.section == 5 {
             if let value = AgeRefList.getInstance().list[indexPath.row + 1] {
                 let text: String
-                if value.max > 100 {
+                if value.min == 50 && value.max == 120 {
+                    text = "No Preference"
+                } else if value.max > 100 {
                     text = "\(value.min)+"
                 } else {
                     text = "\(value.min) - \(value.max)"
@@ -209,8 +215,15 @@ class EVCMatchingPreferencesViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        self.firstTimePrefs.matchingPreferences = self.prefs
         if let dest = segue.destination as? EVCPreferencesViewController {
-            dest.matchingPreferences = self.prefs
+            dest.prefs = self.firstTimePrefs
+        } else if let dest = segue.destination as? EVCHobbiesPreferencesViewController {
+            dest.firstTimePrefs = self.firstTimePrefs
+            dest.prefs = dest.firstTimePrefs.hobbiesPreferences
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = self.endsegue
+            }
         }
     }
 

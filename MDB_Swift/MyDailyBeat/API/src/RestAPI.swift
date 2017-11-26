@@ -197,15 +197,20 @@ public class RestAPI: NSObject {
         var json = result["jsonString"].stringValue
         json = json.removingPercentEncoding!
         json = json.replacingOccurrences(of: "\\", with: "")
+        json = json.replacingOccurrences(of: "&rsquo;", with: "'")
+        json = json.replacingOccurrences(of: "&#39;", with: "'")
+        json = json.replacingOccurrences(of: "&quot;", with: "")
+        json = json.replacingOccurrences(of: "\"Registration\"", with: "Registration")
+        json = json.replacingOccurrences(of: "&amp;", with: "&")
         
         let range = json.range(of: "{")
         if let r = range, !r.isEmpty {
-            json = json.substring(from: (range?.lowerBound)!)
+            json = String(json[r.lowerBound...])
         } else {
             print("Error: Malformed Result: \(json)")
         }
-        print("\(json)")
-        return JSON(parseJSON: json)
+        print(json)
+        return JSON(parseJSON: "\(json)")
     }
 
     public func uploadProfilePicture(_ profilePicture: Data, withName name: String) -> Bool {

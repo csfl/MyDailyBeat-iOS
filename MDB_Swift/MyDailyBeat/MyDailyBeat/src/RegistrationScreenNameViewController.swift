@@ -34,10 +34,13 @@ class RegistrationScreenNameViewController: UIViewController {
     }
     
     @IBAction func next(_ sender: Any) {
+        self.userExistsCheck()
         guard isValidInput else {
             // TODO: Show error messages here.
             if !allFieldsFilledIn {
                 self.makeAlert(with: "Form not complete.", and: "One or more of the fields on this page are not filled in. Please enter valid input for all the fields on this page.")
+            } else if self.screenNameExists {
+                    self.makeAlert(with: "User Already Exists", and: "A user with this screen name already exists. Please select a different screen name.")
             } else {
                 self.makeAlert(with: "Invalid Password", and: "The password you have selected is invalid. Please select a different password. The password must be a minimum of 6 characters long with at least one letter and one number, with a maximum length of 20 characters.")
             }
@@ -52,7 +55,7 @@ class RegistrationScreenNameViewController: UIViewController {
     }
     
     var isValidInput: Bool {
-        var result = !self.screenNameExists
+        var result = false
         guard allFieldsFilledIn else {
             return false
         }
@@ -61,12 +64,14 @@ class RegistrationScreenNameViewController: UIViewController {
             result = result && (enteredPass.characters.count >= 6 && enteredPass.characters.count <= 20)
             result = result && (enteredPass.rangeOfCharacter(from: CharacterSet.alphanumerics) != nil)
         }
+        
+        result = result && !screenNameExists
         return result
     }
     
     var allFieldsFilledIn: Bool {
         var result = false
-        if let _ = self.screenNameField.text, let _ = self.passField.text, let _ = self.pass2Field.text {
+        if let name = self.screenNameField.text, let pass1 = self.passField.text, let pass2 = self.pass2Field.text, name != "" && pass1 != "" && pass2 != "" {
             result = true
         }
         return result
@@ -105,9 +110,9 @@ class RegistrationScreenNameViewController: UIViewController {
         self.pass2Outer.layer.cornerRadius = 8
         self.pass2Outer.clipsToBounds = true
         
-        screenNameField.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        passField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
-        pass2Field.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSForegroundColorAttributeName: UIColor(netHex: 0x0097A4)])
+        screenNameField.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        passField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
+        pass2Field.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
     
         // Do any additional setup after loading the view.
     }
@@ -128,6 +133,12 @@ class RegistrationScreenNameViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func userExistsCheck() {
+        if let enteredScreenName = self.screenNameField.text {
+            self.screenNameExists = RestAPI.getInstance().doesUserExist(withScreenName: enteredScreenName)
+        }
+    }
 
 }
 
@@ -162,17 +173,8 @@ extension RegistrationScreenNameViewController: UITextFieldDelegate {
         textField.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         if textField == self.screenNameField {
             self.tipView.dismiss(withCompletion: { 
-                // check if screenName exists
                 DispatchQueue.global().async {
-                    DispatchQueue.main.sync {
-                        UIApplication.shared.keyWindow?.makeToastActivity(.center)
-                    }
-                    if let enteredScreenName = self.screenNameField.text {
-                        self.screenNameExists = RestAPI.getInstance().doesUserExist(withScreenName: enteredScreenName)
-                    }
-                    DispatchQueue.main.sync {
-                        UIApplication.shared.keyWindow?.hideToastActivity()
-                    }
+                    self.userExistsCheck()
                 }
             })
         } else {

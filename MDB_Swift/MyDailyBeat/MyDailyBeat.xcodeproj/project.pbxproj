@@ -607,8 +607,8 @@
 				7628FD4E1E80A1900053D04A /* MainViewController.swift */,
 				7628FD501E80AEE40053D04A /* RegistrationViewController.swift */,
 				7628FD581E80C4E70053D04A /* RegistrationScreenNameViewController.swift */,
-				7608D8121E89E9F100B92C0F /* RegistrationPersonalInfoViewController.swift */,
 				76CF9AD01E9F017A004E4EE7 /* RegistrationContactInfoViewController.swift */,
+				7608D8121E89E9F100B92C0F /* RegistrationPersonalInfoViewController.swift */,
 				769F391F1E84957200E036CA /* AboutViewController.swift */,
 				762289261EDBDD1200F6B586 /* AboutDetailsViewController.swift */,
 				0199816D1EFCA79D009003FD /* AboutDetailsWebViewController.swift */,
@@ -712,11 +712,13 @@
 					76BD90BD1E5A8CDD000ADD90 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 38MW53VVGD;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					76BD90DA1E5A8D37000ADD90 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 38MW53VVGD;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1141,7 +1143,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.verve.MyDailyBeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1158,7 +1161,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.verve.MyDailyBeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1180,7 +1184,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "API/CommonCrypto/**";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1205,7 +1210,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "API/CommonCrypto/**";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

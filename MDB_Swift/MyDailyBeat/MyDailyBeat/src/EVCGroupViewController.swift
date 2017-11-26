@@ -73,7 +73,7 @@ class EVCGroupViewController: UIViewController {
         self.loadPosts()
     }
 
-    func writePost() {
+    @objc func writePost() {
         let completionHandler: (_ message: String, _ image: UIImage?) -> Void = { (message, image) in
             let attachedImage: UIImage? = image
             let postText: String = message
@@ -117,7 +117,7 @@ class EVCGroupViewController: UIViewController {
         self.present(UINavigationController(rootViewController: composeNewPost), animated: true, completion: nil)
     }
 
-    func groupSettings() {
+    @objc func groupSettings() {
         self.performSegue(withIdentifier: "EditGroupSegue", sender: nil)
     }
 
@@ -154,10 +154,10 @@ class EVCGroupViewController: UIViewController {
         })
     }
 
-    func invite() {
+    @objc func invite() {
         let searchController = EVCUserSearchViewViewController()
         searchController.groupToInviteTo = self.group
-        self.present(UINavigationController(rootViewController: searchController), animated: true, completion: { _ in })
+        self.present(UINavigationController(rootViewController: searchController), animated: true, completion: nil)
     }
 
     func loadPicture() {

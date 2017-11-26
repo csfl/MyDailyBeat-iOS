@@ -60,8 +60,8 @@ public class EVCUserSearchViewViewController: UIViewController, UISearchBarDeleg
         self.navigationController?.pushViewController(inviteWriter, animated: true)
     }
 
-    func cancelInvite() {
-        self.dismiss(animated: true, completion: { _ in })
+    @objc func cancelInvite() {
+        self.dismiss(animated: true, completion: nil)
     }
 
     public func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {

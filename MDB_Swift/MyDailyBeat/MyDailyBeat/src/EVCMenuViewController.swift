@@ -211,7 +211,7 @@ func numberOfSections(in tableView: UITableView) -> Int {
                     cell.imgView.image = EVCCommonMethods.image(with: icon!, scaledTo: CGSize(width: CGFloat(30), height: CGFloat(30)))
                 }
                 else {
-                    cell.lbl.text = (groups[indexPath.row] as AnyObject).groupName
+                    cell.lbl.text = groups[indexPath.row].groupName
                     
                     DispatchQueue.global().async(execute: {() -> Void in
                         let imageURL: URL? = RestAPI.getInstance().retrieveGroupPicture(for: self.groups[indexPath.row])

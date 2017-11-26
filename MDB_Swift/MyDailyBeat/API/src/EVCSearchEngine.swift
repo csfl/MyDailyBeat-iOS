@@ -34,7 +34,7 @@ public class EVCSearchEngine: NSObject {
         var result = [VerveUser]()
         for i in 0..<jsonArr.count {
             let resultDic = jsonArr[i]
-            let currentUser = VerveUser.fromJSON(json: resultDic)
+            let currentUser = VerveUser.fromJSON2(json: resultDic)
             result.append(currentUser)
         }
         return result

@@ -79,7 +79,7 @@ class FXFormZipcodeCell: FXFormDefaultCell, UITextFieldDelegate {
         self.textField.selectAll(nil)
     }
 
-    func textDidChange() {
+    @objc func textDidChange() {
         self.updateFieldValue()
     }
 

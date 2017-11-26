@@ -20,16 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor(netHex: 0x0097A4)
         UITabBar.appearance().barTintColor = UIColor(netHex: 0x0097A4)
         UITableView.appearance().separatorStyle = .none
-        var normalAttrs = [String: Any]()
-        normalAttrs[NSForegroundColorAttributeName] = UIColor(netHex: 0xE6E6E6)
-        normalAttrs[NSFontAttributeName] = UIFont.systemFont(ofSize: 15)
-        var selectedAttrs = [String: Any]()
-        selectedAttrs[NSForegroundColorAttributeName] = UIColor(netHex: 0xFFFFFF)
-        selectedAttrs[NSFontAttributeName] = UIFont.systemFont(ofSize: 15)
+        var normalAttrs = [NSAttributedStringKey: Any]()
+        normalAttrs[NSAttributedStringKey.foregroundColor] = UIColor(netHex: 0xE6E6E6)
+        normalAttrs[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 15)
+        var selectedAttrs = [NSAttributedStringKey: Any]()
+        selectedAttrs[NSAttributedStringKey.foregroundColor] = UIColor(netHex: 0xFFFFFF)
+        selectedAttrs[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 15)
         UITabBarItem.appearance().setTitleTextAttributes(normalAttrs, for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes(selectedAttrs, for: .selected)
         //UserDefaults.standard.set(true, forKey: "FirstTimeLogin")

@@ -230,7 +230,7 @@ class SwitchViewCell: UITableViewCell {
         self.button.clipsToBounds = true
     }
     
-    func onClick() {
+    @objc func onClick() {
         action()
     }
 }
