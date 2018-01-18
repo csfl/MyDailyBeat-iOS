@@ -8,12 +8,41 @@
 
 import UIKit
 
+public enum PrefType {
+    case USER
+    case MATCHING
+}
+
 private var s_list: DrinkerRefList = DrinkerRefList()
 public class DrinkerRefList: NSObject {
     open fileprivate(set) var list: [Int: String] = [Int: String]()
     fileprivate var loaded: Bool = false
     override fileprivate init() {
         super.init()
+    }
+    
+    public func getStringForIndex(_ index: Int, prefType: PrefType) -> String? {
+        if index == 4 {
+            return self.list[index]
+        } else if index == 1 {
+            if prefType == .USER {
+                return "I don't drink."
+            } else {
+                return "Doesn't drink"
+            }
+        } else if index == 2 {
+            if prefType == .USER {
+                return "I seldom drink."
+            } else {
+                return "Seldom drinks"
+            }
+        } else {
+            if prefType == .USER {
+                return "I enjoy drinking regularly."
+            } else {
+                return "Enjoys drinking regularly"
+            }
+        }
     }
     
     public class func getInstance() -> DrinkerRefList {

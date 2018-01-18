@@ -19,6 +19,7 @@ class EVCLoginViewController: UIViewController {
     @IBOutlet var passOuter: UITextField!
     @IBOutlet var forgotUser: UIButton!
     @IBOutlet var forgotPass: UIButton!
+    @IBOutlet var image: UIImageView!
     var seguePerformer: ((String, Any?) -> ())? = nil
 
     @IBAction func forgotUsername(_ sender: UIButton) {
@@ -74,7 +75,7 @@ class EVCLoginViewController: UIViewController {
             } else if verified == .userDoesntExist {
                 DispatchQueue.main.async(execute: {() -> Void in
                     UIApplication.shared.keyWindow?.hideToastActivity()
-                    self.makeAlert(with: "A user account with this username and password does not exist. Please verify that you have entered your username and password correctly, and that you have verified your account information.", and: "")
+                    self.makeAlert(with: "New User? Please click n the \"Sign up today \" button below.\n\nReturning User? Please try re-entering your user name and/or password.", and: "")
                 })
             } else {
                 DispatchQueue.main.async(execute: {() -> Void in
@@ -112,10 +113,13 @@ class EVCLoginViewController: UIViewController {
         passOuter.layer.borderColor = UIColor.white.cgColor
         passOuter.layer.cornerRadius = 8
         
+        
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        image.layer.cornerRadius = image.frame.width / 2
         self.loadLoginData()
     }
 

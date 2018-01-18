@@ -23,7 +23,7 @@ class RegistrationPersonalInfoViewController: UIViewController {
     @IBOutlet var dobOuter: UITextField!
     @IBOutlet var picker: UIDatePicker!
     @IBOutlet var toolbar: UIToolbar!
-    
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var doneButton: UIBarButtonItem!
     var userExists = false
     var birthDay: Date = Date()
@@ -140,6 +140,7 @@ class RegistrationPersonalInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        imageView.layer.cornerRadius = imageView.frame.width / 2
     }
     
 

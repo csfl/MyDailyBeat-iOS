@@ -18,6 +18,7 @@ class RegistrationScreenNameViewController: UIViewController {
     @IBOutlet var userOuter: UITextField!
     @IBOutlet var passOuter: UITextField!
     @IBOutlet var pass2Outer: UITextField!
+    @IBOutlet var imageView: UIImageView!
     var screenNameExists = false
     var tipView: EasyTipView =  EasyTipView(text: "Black ToolTip")
     var nextPage: (() -> ()) = {
@@ -121,6 +122,7 @@ class RegistrationScreenNameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        imageView.layer.cornerRadius = imageView.frame.width / 2
     }
     
 

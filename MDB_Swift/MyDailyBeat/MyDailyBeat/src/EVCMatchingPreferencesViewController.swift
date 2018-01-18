@@ -63,7 +63,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToggleCell", for: indexPath) as! ToggleTableViewCell
         if indexPath.section == 0 {
-            cell.textLabel?.text = GenderRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = GenderRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(self.prefs.gender.contains(indexPath.row + 1), animated: true)
             cell.onToggle = {
@@ -76,7 +76,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 1 {
-            cell.textLabel?.text = MaritalRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = MaritalRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(self.prefs.status.contains(indexPath.row + 1), animated: true)
             cell.onToggle = {
@@ -89,7 +89,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 2 {
-            cell.textLabel?.text = EthnicityRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = EthnicityRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(self.prefs.ethnicity.contains(indexPath.row + 1), animated: true)
             cell.onToggle = {
@@ -102,7 +102,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 3 {
-            cell.textLabel?.text = ReligionRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = ReligionRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(self.prefs.beliefs.contains(indexPath.row + 1), animated: true)
             cell.onToggle = {
@@ -115,7 +115,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 4 {
-            cell.textLabel?.text = DrinkerRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = DrinkerRefList.getInstance().getStringForIndex(indexPath.row + 1, prefType: .MATCHING)?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(self.prefs.drinker.contains(indexPath.row + 1), animated: true)
             cell.onToggle = {
@@ -153,7 +153,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 6 {
-            cell.textLabel?.text = ThreeChoiceRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = ThreeChoiceRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.isSmoker, animated: true)
             cell.onToggle = {
@@ -165,7 +165,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else {
-            cell.textLabel?.text = ThreeChoiceRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = ThreeChoiceRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.isVeteran, animated: true)
             cell.onToggle = {
@@ -198,7 +198,7 @@ class EVCMatchingPreferencesViewController: UITableViewController {
         } else if section == 3 {
             return "Religion"
         } else if section == 4 {
-            return "Drinker"
+            return "Drinking Preference"
         } else if section == 5 {
             return "Age"
         } else if section == 6 {

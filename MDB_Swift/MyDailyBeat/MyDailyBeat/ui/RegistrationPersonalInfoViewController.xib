@@ -17,6 +17,7 @@
                 <outlet property="doneButton" destination="f3m-hb-UuF" id="bNH-hv-E28"/>
                 <outlet property="firstField" destination="FkX-KP-uqA" id="GyS-M6-Ssa"/>
                 <outlet property="firstOuter" destination="uig-ql-G1h" id="64t-K2-2G6"/>
+                <outlet property="imageView" destination="hsg-Zh-4Jx" id="X1f-w0-3FT"/>
                 <outlet property="lastField" destination="U7N-xg-29z" id="n9f-Q9-9Oq"/>
                 <outlet property="lastOuter" destination="1fr-F4-eR0" id="fye-ud-5qT"/>
                 <outlet property="nextButton" destination="Olo-9i-tX0" id="Mb5-g4-wW7"/>
@@ -36,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="oZg-jR-0mK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="oZg-jR-0mK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -137,6 +138,7 @@
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-Zh-4Jx">
                     <rect key="frame" x="123" y="30" width="128" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hsg-Zh-4Jx" secondAttribute="height" multiplier="1:1" id="5N8-Dm-9lx"/>
                         <constraint firstAttribute="height" constant="128" id="g5Y-0a-82c"/>
@@ -203,6 +205,7 @@
                 <constraint firstItem="FkX-KP-uqA" firstAttribute="bottom" secondItem="uig-ql-G1h" secondAttribute="bottom" constant="-1" id="y1F-v2-F9M"/>
                 <constraint firstItem="FkX-KP-uqA" firstAttribute="leading" secondItem="eKf-sa-1kA" secondAttribute="trailing" id="zAo-7v-Oaq"/>
             </constraints>
+            <point key="canvasLocation" x="33" y="508"/>
         </view>
         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="Y3e-zB-WaK">
             <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>

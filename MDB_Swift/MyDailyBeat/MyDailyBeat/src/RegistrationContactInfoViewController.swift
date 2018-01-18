@@ -20,6 +20,7 @@ class RegistrationContactInfoViewController: UIViewController {
     @IBOutlet var zipOuter: UITextField!
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var toolbar2: UIToolbar!
+    @IBOutlet var imageView: UIImageView!
     var userWithEmailExists = false
     var userWithMobileExists = false
     var tipView: EasyTipView =  EasyTipView(text: "ToolTip")
@@ -119,6 +120,7 @@ class RegistrationContactInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        imageView.layer.cornerRadius = imageView.frame.width / 2
     }
     
 

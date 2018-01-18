@@ -75,7 +75,7 @@ class RegistrationViewController: UIPageViewController {
     }
     */
     func messageViewController(_ index: Int) -> EVCRegistrationMessageViewController {
-        let message: String = "You are about to join a vibrant community for older adults..."
+        let message: String = "Welcome to MyDailyBeat!"
         let image: UIImage = #imageLiteral(resourceName: "community-ico-screen-1")
         let vc = EVCRegistrationMessageViewController()
         vc.message = message

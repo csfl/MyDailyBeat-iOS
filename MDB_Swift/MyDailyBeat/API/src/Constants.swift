@@ -8,7 +8,7 @@
 //
 #if !VerveAPI_Constants_h
 //#define VerveAPI_Constants_h
-public let WELCOME_MESSAGE_1 = "You are about to join the most vibrant community for older adults.\n\nLook No Further!"
+public let WELCOME_MESSAGE_1 = "Welcome to MyDailyBeat!"
 public let WELCOME_MESSAGE_2 = "Let MyDailyBeat be the place you come to every day to help manage your personal life, keep you engaged, socialize, and stay connected."
 let APP_ID_C_STRING = "com.verve.MyDailyBeat"
 let APP_ID_NSSTRING = "com.verve.MyDailyBeat"

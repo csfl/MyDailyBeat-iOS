@@ -193,7 +193,7 @@ func numberOfSections(in tableView: UITableView) -> Int {
         }
         cell.backgroundColor = UIColor.clear
         cell.lbl.textColor = UIColor.white
-        cell.lbl.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+        cell.lbl.font = UIFont.preferredFont(forTextStyle: .body)
         cell.lbl.highlightedTextColor = UIColor.lightGray
         cell.selectedBackgroundView = UIView()
         cell.lbl.textAlignment = .right

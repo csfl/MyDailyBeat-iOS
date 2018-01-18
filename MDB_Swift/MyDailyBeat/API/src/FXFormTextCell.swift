@@ -14,7 +14,7 @@ class FXFormTextCell: FXFormDefaultCell {
     override func setUp() {
         self.textLabel?.text = self.field.value as! String?
         self.textLabel?.lineBreakMode = .byWordWrapping
-        self.textLabel?.font = UIFont(name: "Helvetica", size: CGFloat(12))
+        self.textLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         self.textLabel?.numberOfLines = 0
         self.accessoryType = .none
         self.selectionStyle = .none
@@ -22,7 +22,7 @@ class FXFormTextCell: FXFormDefaultCell {
 
     override func update() {
         self.textLabel?.text = self.field.value as! String?
-        self.textLabel?.font = UIFont(name: "Helvetica", size: CGFloat(12))
+        self.textLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         self.textLabel?.lineBreakMode = .byWordWrapping
         self.textLabel?.numberOfLines = 0
         self.accessoryType = .none

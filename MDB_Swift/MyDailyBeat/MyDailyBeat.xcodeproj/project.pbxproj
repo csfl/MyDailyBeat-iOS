@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0127B56E2006FB4900FDA330 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127B56D2006FB4900FDA330 /* UITextFieldExtension.swift */; };
 		014B0D741F57AA47009F4322 /* InnerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B0D731F57AA47009F4322 /* InnerTextField.swift */; };
 		015C4FE21EE7856D002D2118 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4FE11EE7856D002D2118 /* TextFieldTableViewCell.swift */; };
 		015C4FE41EF22314002D2118 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4FE31EF22314002D2118 /* Utilities.swift */; };
@@ -196,6 +197,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0127B56D2006FB4900FDA330 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		014B0D731F57AA47009F4322 /* InnerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerTextField.swift; sourceTree = "<group>"; };
 		015C4FE11EE7856D002D2118 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		015C4FE31EF22314002D2118 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				767487871E5BE26E0024331F /* BoolExtension.swift */,
 				7649B5C01E5E55B0001FBCDF /* SwiftyJSONExtension.swift */,
 				7652C7DA1E6344B30028B693 /* Extensions.swift */,
+				0127B56D2006FB4900FDA330 /* UITextFieldExtension.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				767487061E5AA0520024331F /* RegisterForm2.swift in Sources */,
 				7674870A1E5AA0520024331F /* Stack.swift in Sources */,
 				762289231EDA936500F6B586 /* ReligionRefList.swift in Sources */,
+				0127B56E2006FB4900FDA330 /* UITextFieldExtension.swift in Sources */,
 				7637EFA01E6C75CF00C5BC51 /* PrescripProviderInfo.swift in Sources */,
 				767487071E5AA0520024331F /* RegisterForm3.swift in Sources */,
 				767486F91E5AA0520024331F /* GroupCreationForm.swift in Sources */,

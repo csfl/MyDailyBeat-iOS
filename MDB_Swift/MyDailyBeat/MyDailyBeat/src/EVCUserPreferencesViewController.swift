@@ -61,7 +61,7 @@ class EVCUserPreferencesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToggleCell", for: indexPath) as! ToggleTableViewCell
         if indexPath.section == 0 {
-            cell.textLabel?.text = GenderRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = GenderRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.gender, animated: true)
             cell.onToggle = {
@@ -73,7 +73,7 @@ class EVCUserPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 1 {
-            cell.textLabel?.text = MaritalRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = MaritalRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.status, animated: true)
             cell.onToggle = {
@@ -85,7 +85,7 @@ class EVCUserPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 2 {
-            cell.textLabel?.text = EthnicityRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = EthnicityRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.ethnicity, animated: true)
             cell.onToggle = {
@@ -97,7 +97,7 @@ class EVCUserPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 3 {
-            cell.textLabel?.text = ReligionRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = ReligionRefList.getInstance().list[indexPath.row + 1]?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.beliefs, animated: true)
             cell.onToggle = {
@@ -109,7 +109,7 @@ class EVCUserPreferencesViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         } else if indexPath.section == 4 {
-            cell.textLabel?.text = DrinkerRefList.getInstance().list[indexPath.row + 1]
+            cell.textLabel?.text = DrinkerRefList.getInstance().getStringForIndex(indexPath.row + 1, prefType: .USER)?.capitalized
             cell.update()
             cell.toggleSwitch.setOn(indexPath.row + 1 == self.prefs.drinker, animated: true)
             cell.onToggle = {
@@ -169,9 +169,9 @@ class EVCUserPreferencesViewController: UITableViewController {
         } else if section == 3 {
             return "Religion"
         } else if section == 4 {
-            return "Drinker"
+            return "Drinking Preference"
         } else {
-            return nil
+            return "Additional Information"
         }
     }
 

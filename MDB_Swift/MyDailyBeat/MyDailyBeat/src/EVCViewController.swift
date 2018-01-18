@@ -205,7 +205,7 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 let textLabel = UILabel(frame: cell.contentView.bounds)
                 textLabel.text = "What would you like to do?"
                 textLabel.textAlignment = .center
-                textLabel.font = UIFont(name: "HelveticaNeue-Bold", size: CGFloat(18))
+                textLabel.font = UIFont.preferredFont(forTextStyle: .headline)
                 textLabel.lineBreakMode = .byWordWrapping
                 textLabel.numberOfLines = 0
                 cell.addSubview(textLabel)
@@ -215,7 +215,7 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.text = options[indexPath.row]
                 cell.textLabel?.textAlignment = .left
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
+                cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
                 let icon = UIImage(named: imageNames[indexPath.row])
                 cell.imageView?.image = EVCCommonMethods.image(with: icon!, scaledTo: CGSize(width: CGFloat(30), height: CGFloat(30)))
         default:

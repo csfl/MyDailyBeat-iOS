@@ -227,10 +227,10 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell?.backgroundColor = UIColor.clear
-        cell?.textLabel?.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+        cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         cell?.textLabel?.textColor = UIColor.black
         cell?.textLabel?.highlightedTextColor = UIColor.lightGray
-        cell?.detailTextLabel?.font = UIFont(name: "HelveticaNeue", size: CGFloat(10))
+        cell?.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .caption2)
         cell?.detailTextLabel?.textColor = UIColor.black
         cell?.detailTextLabel?.highlightedTextColor = UIColor.lightGray
         cell?.selectedBackgroundView = UIView()

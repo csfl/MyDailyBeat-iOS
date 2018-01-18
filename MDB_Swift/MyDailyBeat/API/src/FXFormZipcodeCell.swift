@@ -18,7 +18,6 @@ class FXFormZipcodeCell: FXFormDefaultCell, UITextFieldDelegate {
         self.textField.textAlignment = .right
         self.textField = UITextField(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(200), height: CGFloat(21)))
         self.textField.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin, .flexibleLeftMargin]
-        self.textField.font = UIFont.systemFont(ofSize: CGFloat((self.textLabel?.font?.pointSize)!))
         self.textField.textColor = UIColor(red: CGFloat(0.275), green: CGFloat(0.376), blue: CGFloat(0.522), alpha: CGFloat(1.000))
         self.textField.delegate = self
         self.contentView.addSubview(self.textField)
