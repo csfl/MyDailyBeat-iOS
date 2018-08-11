@@ -66,10 +66,10 @@ public class EVCUserInviteViewController: UIViewController, UITextViewDelegate {
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    self.presentingViewController?.view.makeToast("Invite sent!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                    self.presentingViewController?.view.makeToast("Invite sent!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), completion: nil)
                 }
                 else {
-                    self.presentingViewController?.view.makeToast("Invite send failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                    self.presentingViewController?.view.makeToast("Invite send failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), completion: nil)
                     return
                 }
                 self.dismiss(animated: true, completion: nil)

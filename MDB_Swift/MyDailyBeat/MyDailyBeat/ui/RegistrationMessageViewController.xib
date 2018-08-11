@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,13 +8,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EVCRegistrationMessageViewController" customModule="MyDailyBeat" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="H33-hg-jlb" id="SLy-b0-5V8"/>
                 <outlet property="imageView" destination="rNn-Tf-7Pa" id="ubf-Sk-5Em"/>
                 <outlet property="messageLabel" destination="c2M-ei-gNF" id="Gj2-5A-Cfm"/>
+                <outlet property="navBar" destination="cDU-gC-8Qr" id="YIT-Fs-I3d"/>
                 <outlet property="nextButton" destination="OZY-Nc-zQv" id="1Az-EK-JOw"/>
                 <outlet property="view" destination="UAP-bj-cg0" id="tVJ-Yl-D01"/>
             </connections>
@@ -30,21 +33,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="oGO-j7-zfW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDU-gC-8Qr">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.0" green="0.71372549019999998" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="7jT-fn-Res">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="H33-hg-jlb">
+                                            <connections>
+                                                <action selector="previous:" destination="-1" id="ZdN-KH-tgW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
+                        <color key="backgroundColor" red="0.46794795989999999" green="0.72117918729999997" blue="0.96230214830000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="oGO-j7-zfW" firstAttribute="leading" secondItem="fiS-cH-ixq" secondAttribute="leading" id="5PW-d6-7Jw"/>
-                            <constraint firstItem="oGO-j7-zfW" firstAttribute="centerY" secondItem="fiS-cH-ixq" secondAttribute="centerY" id="Aqg-r2-ZQO"/>
-                            <constraint firstItem="oGO-j7-zfW" firstAttribute="top" secondItem="fiS-cH-ixq" secondAttribute="top" id="mUL-Zc-Oa1"/>
-                            <constraint firstItem="oGO-j7-zfW" firstAttribute="centerX" secondItem="fiS-cH-ixq" secondAttribute="centerX" id="nNU-pE-xoN"/>
+                            <constraint firstItem="cDU-gC-8Qr" firstAttribute="centerX" secondItem="fiS-cH-ixq" secondAttribute="centerX" id="WL8-oP-geB"/>
+                            <constraint firstItem="cDU-gC-8Qr" firstAttribute="leading" secondItem="fiS-cH-ixq" secondAttribute="leading" id="dvS-B5-zpS"/>
+                            <constraint firstItem="cDU-gC-8Qr" firstAttribute="width" secondItem="fiS-cH-ixq" secondAttribute="width" id="v87-Cw-8bh"/>
                         </constraints>
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZY-Nc-zQv">
-                    <rect key="frame" x="127" y="413" width="120" height="48"/>
+                    <rect key="frame" x="127" y="477" width="120" height="48"/>
                     <color key="backgroundColor" red="0.0" green="0.71372549019999998" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="4M9-XO-6LW"/>
@@ -61,7 +74,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2M-ei-gNF">
-                    <rect key="frame" x="37" y="245" width="300" height="137"/>
+                    <rect key="frame" x="37" y="309" width="300" height="137"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="137" id="o3G-ys-e7p"/>
                     </constraints>
@@ -70,7 +83,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rNn-Tf-7Pa">
-                    <rect key="frame" x="87" y="20" width="200" height="200"/>
+                    <rect key="frame" x="87" y="84" width="200" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="V75-75-Jyn"/>
                     </constraints>
@@ -88,13 +101,12 @@
                 <constraint firstItem="c2M-ei-gNF" firstAttribute="centerX" secondItem="OZY-Nc-zQv" secondAttribute="centerX" id="LUS-A5-GlS"/>
                 <constraint firstItem="6PM-Hj-Ii6" firstAttribute="centerX" secondItem="UAP-bj-cg0" secondAttribute="centerX" id="QJa-cd-Yv6"/>
                 <constraint firstItem="OZY-Nc-zQv" firstAttribute="top" secondItem="c2M-ei-gNF" secondAttribute="bottom" constant="31" id="ZUa-WE-wWZ"/>
+                <constraint firstItem="rNn-Tf-7Pa" firstAttribute="top" secondItem="cDU-gC-8Qr" secondAttribute="bottom" constant="20" id="fhd-h6-CmF"/>
+                <constraint firstItem="RVc-My-gTs" firstAttribute="top" secondItem="cDU-gC-8Qr" secondAttribute="top" id="g63-t3-yq7"/>
                 <constraint firstItem="rNn-Tf-7Pa" firstAttribute="centerX" secondItem="c2M-ei-gNF" secondAttribute="centerX" id="hIR-4V-ht3"/>
                 <constraint firstItem="6PM-Hj-Ii6" firstAttribute="top" secondItem="UAP-bj-cg0" secondAttribute="top" id="myR-rA-R1c"/>
-                <constraint firstItem="rNn-Tf-7Pa" firstAttribute="top" secondItem="UAP-bj-cg0" secondAttribute="top" constant="20" symbolic="YES" id="nxA-bl-0yM"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="RVc-My-gTs"/>
         </view>
     </objects>
-    <resources>
-        <image name="Background" width="5184" height="3456"/>
-    </resources>
 </document>

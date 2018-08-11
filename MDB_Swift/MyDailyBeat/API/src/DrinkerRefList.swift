@@ -26,19 +26,19 @@ public class DrinkerRefList: NSObject {
             return self.list[index]
         } else if index == 1 {
             if prefType == .USER {
-                return "I don't drink."
+                return "I don't drink"
             } else {
                 return "Doesn't drink"
             }
         } else if index == 2 {
             if prefType == .USER {
-                return "I seldom drink."
+                return "I seldom drink"
             } else {
                 return "Seldom drinks"
             }
         } else {
             if prefType == .USER {
-                return "I enjoy drinking regularly."
+                return "I enjoy drinking regularly"
             } else {
                 return "Enjoys drinking regularly"
             }

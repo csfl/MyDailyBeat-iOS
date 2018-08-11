@@ -10,10 +10,12 @@ import UIKit
 import Toast_Swift
 import API
 import DLAlertView
+
 class EVCFinanceHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     var bankList = [BankInfo]()
     var iconList = [UIImage?]()
+    
 
 
     override func viewDidLoad() {
@@ -27,6 +29,7 @@ class EVCFinanceHomeViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.scrollIndicatorInsets = insets!
         self.edgesForExtendedLayout = .all
         self.retrieveBanksData()
+        tableView.separatorStyle = .none
         // Do any additional setup after loading the view from its nib.
     }
 
@@ -38,7 +41,9 @@ class EVCFinanceHomeViewController: UIViewController, UITableViewDelegate, UITab
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
-            self.bankList = DataManager.getBanks()
+            self.bankList = DataManager.getBanks().sorted(by: { (left, right) -> Bool in
+                return left.appName <= right.appName
+            })
             self.iconList = [UIImage?](repeating: nil, count: self.bankList.count)
             for i in 0..<self.bankList.count {
                 let load: Bool = UserDefaults.standard.bool(forKey: "LOAD_BANK_IMAGES")
@@ -78,16 +83,16 @@ func numberOfSections(in tableView: UITableView) -> Int {
             cell = UITableViewCell(style: .default, reuseIdentifier: "CellIdentifier")
         }
         if self.bankList.count > 0 {
-            if indexPath.row < self.bankList.count {
-                cell?.textLabel?.text = self.bankList[indexPath.row].appName
-                if let image = self.iconList[indexPath.row] {
+            if indexPath.row == 0 {
+                cell?.textLabel?.text = "Add Bank"
+                cell?.imageView?.image = EVCCommonMethods.image(with: UIImage(named: "plus-512.png")!, scaledTo: CGSize(width: CGFloat(30), height: CGFloat(30)))
+            } else {
+                cell?.textLabel?.text = self.bankList[indexPath.row - 1].appName
+                if let image = self.iconList[indexPath.row - 1] {
                     cell?.imageView?.image = image
                 } else {
                     cell?.imageView?.image = nil
                 }
-            } else {
-                cell?.textLabel?.text = "Add Bank"
-                cell?.imageView?.image = EVCCommonMethods.image(with: UIImage(named: "plus-512.png")!, scaledTo: CGSize(width: CGFloat(30), height: CGFloat(30)))
             }
         } else {
             cell?.textLabel?.text = "Add Bank"
@@ -98,11 +103,10 @@ func numberOfSections(in tableView: UITableView) -> Int {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.bankList.count > 0 {
-            if indexPath.row < self.bankList.count {
-                self.popupActionMenu(indexPath.row)
-            } else {
-                // add new bank
+            if indexPath.row == 0 {
                 self.addBank()
+            } else {
+                self.popupActionMenu(indexPath.row - 1)
             }
         } else {
             // add new bank

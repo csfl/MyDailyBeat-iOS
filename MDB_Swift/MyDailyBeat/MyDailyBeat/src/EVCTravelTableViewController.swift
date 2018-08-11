@@ -18,6 +18,7 @@ class EVCTravelTableViewController: UITableViewController {
         super.viewDidLoad()
         self.travelSites = TRAVEL_SITES /* copyItems: true */
         self.loadData()
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +40,8 @@ class EVCTravelTableViewController: UITableViewController {
             self.travelSites = TravelRefList.getInstance().list.filter({ (key, value) -> Bool in
                 return !arr.contains(key)
             }).map({ (key, value) -> String in
-                return value
-            })
+                return value.lowercased()
+            }).sorted()
             
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()

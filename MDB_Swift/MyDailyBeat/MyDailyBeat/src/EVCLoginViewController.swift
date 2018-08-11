@@ -20,6 +20,8 @@ class EVCLoginViewController: UIViewController {
     @IBOutlet var forgotUser: UIButton!
     @IBOutlet var forgotPass: UIButton!
     @IBOutlet var image: UIImageView!
+    @IBOutlet var screenNameImg: UIImageView!
+    @IBOutlet var passImg: UIImageView!
     var seguePerformer: ((String, Any?) -> ())? = nil
 
     @IBAction func forgotUsername(_ sender: UIButton) {
@@ -96,6 +98,7 @@ class EVCLoginViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view?.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor(netHex: 0x0097A4)
         userNameFeild.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         passWordFeild.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         userNameFeild.delegate = self
@@ -112,6 +115,8 @@ class EVCLoginViewController: UIViewController {
         passOuter.layer.borderWidth = 2
         passOuter.layer.borderColor = UIColor.white.cgColor
         passOuter.layer.cornerRadius = 8
+        screenNameImg.image = UIImage.init(named: "account")?.withRenderingMode(.alwaysTemplate)
+        passImg.image = UIImage.init(named: "pass")?.withRenderingMode(.alwaysTemplate)
         
         
         

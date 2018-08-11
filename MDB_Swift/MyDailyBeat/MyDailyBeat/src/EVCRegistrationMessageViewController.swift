@@ -13,15 +13,24 @@ class EVCRegistrationMessageViewController: UIViewController {
     @IBOutlet var messageLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var backButton: UIBarButtonItem!
+    @IBOutlet var navBar: UINavigationBar!
     var message: String = ""
     var image: UIImage? = nil
     var index = 0
     var nextPage: (() -> ()) = {
         // empty by default
     }
+    var previousPage: (() -> ()) = {
+        
+    }
 
     @IBAction func next(_ sender: Any) {
         self.nextPage()
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        self.previousPage()
     }
     
     override var nibName: String? {

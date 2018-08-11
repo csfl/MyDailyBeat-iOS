@@ -32,7 +32,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), completion: nil)
                     if self.isModal {
                         self.dismiss(animated: true, completion: nil)
                     } else {
@@ -40,7 +40,7 @@ class EVCFlingProfileCreatorViewController: UIViewController {
                     }
                 }
                 else {
-                    UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), completion: nil)
                     return
                 }
             })

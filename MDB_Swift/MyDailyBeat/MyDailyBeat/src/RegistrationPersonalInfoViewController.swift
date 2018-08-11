@@ -12,6 +12,7 @@ import API
 
 let START_INTERVAL: TimeInterval = -3773952000
 let END_INTERVAL  : TimeInterval = -660441600
+let START_DATE    : TimeInterval = -1576800000
 
 class RegistrationPersonalInfoViewController: UIViewController {
     @IBOutlet var nextButton: UIButton!
@@ -25,11 +26,19 @@ class RegistrationPersonalInfoViewController: UIViewController {
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var doneButton: UIBarButtonItem!
+    @IBOutlet var backButton: UIBarButtonItem!
+    @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet var firstNameImg: UIImageView!
+    @IBOutlet var lastNameImg: UIImageView!
+    @IBOutlet var dobImg: UIImageView!
     var userExists = false
     var birthDay: Date = Date()
     var tipView: EasyTipView =  EasyTipView(text: "ToolTip")
     var nextPage: (() -> ()) = {
         // empty by default
+    }
+    var previousPage: (() -> ()) = {
+        
     }
     
     func makeAlert(with title: String, and message: String) {
@@ -42,9 +51,6 @@ class RegistrationPersonalInfoViewController: UIViewController {
     }
     
     @IBAction func next(_ sender: Any) {
-        if let firstName = self.firstField.text, let lastName = self.lastField.text {
-            self.userExistsCheck(firstName: firstName, lastName: lastName)
-        }
         guard isValidInput else {
             // TODO: Show error messages here.
             if !allFieldsFilledIn {
@@ -62,13 +68,17 @@ class RegistrationPersonalInfoViewController: UIViewController {
         self.nextPage()
     }
     
+    @IBAction func previous(_ sender: Any) {
+        self.previousPage()
+    }
+    
     var isValidInput: Bool {
         guard allFieldsFilledIn else {
             return false
         }
         
         self.textFieldDidEndEditing(self.lastField)
-        return !userExists
+        return true
     }
     
     var allFieldsFilledIn: Bool {
@@ -120,8 +130,12 @@ class RegistrationPersonalInfoViewController: UIViewController {
         self.picker.datePickerMode = .date
         self.picker.minimumDate = Date(timeInterval: START_INTERVAL, since: Calendar.current.startOfDay(for: Date()))
         self.picker.maximumDate = Date(timeInterval: END_INTERVAL, since: Calendar.current.startOfDay(for: Date()))
+        self.picker.setDate(Date(timeInterval: START_DATE, since: Calendar.current.startOfDay(for: Date())), animated: true)
         self.birthDay = self.picker.date
         self.picker.addTarget(self, action: #selector(didSelect), for: .valueChanged)
+        self.firstNameImg.image = UIImage.init(named: "account")?.withRenderingMode(.alwaysTemplate)
+        self.lastNameImg.image = UIImage.init(named: "account")?.withRenderingMode(.alwaysTemplate)
+        self.dobImg.image = UIImage.init(named: "calendar")?.withRenderingMode(.alwaysTemplate)
         // Do any additional setup after loading the view.
     }
     
@@ -164,6 +178,13 @@ class RegistrationPersonalInfoViewController: UIViewController {
 extension RegistrationPersonalInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.backgroundColor = UIColor.white
+        if textField == self.dobField {
+            self.birthDay = self.picker.date
+            let formatter = DateFormatter()
+            formatter.timeStyle = .none
+            formatter.dateStyle = .medium
+            self.dobField.text = formatter.string(from: self.birthDay)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

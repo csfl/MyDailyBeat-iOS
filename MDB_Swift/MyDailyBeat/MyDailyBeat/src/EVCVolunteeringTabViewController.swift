@@ -13,6 +13,7 @@ class EVCVolunteeringTabViewController: EVCTabBarController, UITabBarControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        self.setNavTitle(to: "Volunteering")
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

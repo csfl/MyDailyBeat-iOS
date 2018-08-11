@@ -58,6 +58,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.appCopyrightLabel.text = String(format: "Version %@ (%@)\n\u{A9} Copyright %@, %@", appVersion!, appBuild!, formatter.string(from: date), copyrightHolder)
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.navigationItem.title = "About"
     }
 
     /*!

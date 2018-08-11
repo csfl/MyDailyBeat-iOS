@@ -31,6 +31,7 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UserDefaults.standard.set(false, forKey: "IN_SETUP")
         let arr = DataManager.getBanks()
         let arr2 = DataManager.getHealthPortals()
         let arr3 = DataManager.getPrescriptionProviders()
@@ -83,17 +84,7 @@ class EVCViewController: UIViewController, UITableViewDataSource, UITableViewDel
             })
         }
         
-        DispatchQueue.global().async {
-            let userPrefsExist = RestAPI.getInstance().preferencesExistForUser()
-            let matchingPrefsExist = RestAPI.getInstance().matchingPreferencesExistForUser()
-            let hobbiesPrefsExist = RestAPI.getInstance().hobbiesPreferencesExistForUser()
-            
-            DispatchQueue.main.async {
-                if !userPrefsExist || !matchingPrefsExist || !hobbiesPrefsExist {
-                    self.showModalSegue(withIdentifier: "FirstTimeSetupSegue", andSender: self)
-                }
-            }
-        }
+        
         
     }
     

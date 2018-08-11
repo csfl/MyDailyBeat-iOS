@@ -18,6 +18,7 @@ class EVCPartnerMatchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.partners = [FlingProfile]()
+        tableView.separatorStyle = .none
         
     }
     
@@ -262,7 +263,13 @@ override func numberOfSections(in tableView: UITableView) -> Int {
             cell = UITableViewCell(style: .default, reuseIdentifier: "CellIdentifier")
         }
         if self.partners.count == 0 {
-            cell?.textLabel?.text = "No Results Found"
+            if mode == .fling_MODE {
+                cell?.textLabel?.text = "No Flings Found"
+            } else if mode == .friends_MODE {
+                cell?.textLabel?.text = "No Friends Found"
+            } else {
+                cell?.textLabel?.text = "No Relationships Found"
+            }
         }
         else {
             cell?.textLabel?.text = self.partnerUsers[indexPath.row].screenName

@@ -9,6 +9,7 @@ class EVCTravelFavoritesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {

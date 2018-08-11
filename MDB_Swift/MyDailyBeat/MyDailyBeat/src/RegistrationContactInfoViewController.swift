@@ -21,11 +21,19 @@ class RegistrationContactInfoViewController: UIViewController {
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var toolbar2: UIToolbar!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var backButton: UIBarButtonItem!
+    @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet var emailImg: UIImageView!
+    @IBOutlet var mobileImg: UIImageView!
+    @IBOutlet var zipImg: UIImageView!
     var userWithEmailExists = false
     var userWithMobileExists = false
     var tipView: EasyTipView =  EasyTipView(text: "ToolTip")
     var nextPage: (() -> ()) = {
         // empty by default
+    }
+    var previousPage: (() -> ()) = {
+        
     }
     
     func makeAlert(with title: String, and message: String) {
@@ -58,6 +66,10 @@ class RegistrationContactInfoViewController: UIViewController {
         obj.zipcode = zipField.text!
         RegistrationObject.updateInstance(modified: obj)
         self.nextPage()
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        self.previousPage()
     }
     
     var isValidInput: Bool {
@@ -115,6 +127,9 @@ class RegistrationContactInfoViewController: UIViewController {
         zipField.attributedPlaceholder = NSAttributedString(string: "Zip Code", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         self.zipField.inputAccessoryView = self.toolbar
         self.mobileField.inputAccessoryView = self.toolbar2
+        self.emailImg.image = UIImage.init(named: "contactmail")?.withRenderingMode(.alwaysTemplate)
+        self.mobileImg.image = UIImage.init(named: "contactphone")?.withRenderingMode(.alwaysTemplate)
+        self.zipImg.image = UIImage.init(named: "place")?.withRenderingMode(.alwaysTemplate)
         // Do any additional setup after loading the view.
     }
     

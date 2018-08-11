@@ -31,12 +31,14 @@ class EVCPreferencesViewController: UITableViewController {
         super.viewDidLoad()
         api = RestAPI.getInstance()
         self.retrievePrefs()
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.navigationItem.title = "About Me"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,14 +56,17 @@ class EVCPreferencesViewController: UITableViewController {
             self.hobbiesPreferences = self.api.getHobbiesPreferencesForUser()
             if self.api.preferencesExistForUser() {
                 self.prefs.userPreferences = self.userPreferences
+                self.userEdited = true
             }
             
             if self.api.matchingPreferencesExistForUser() {
                 self.prefs.matchingPreferences = self.matchingPreferences
+                self.matchEdited = true
             }
             
             if self.api.hobbiesPreferencesExistForUser() {
                 self.prefs.hobbiesPreferences = self.hobbiesPreferences
+                self.hobbyEdited = true
             }
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()
@@ -110,12 +115,12 @@ class EVCPreferencesViewController: UITableViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         } else if !matchEdited {
-            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information to help us match people to you in the MyFling and MyRelationships modules. Please press 'Matching Preferences (for MyFling and MyRelationships)'. If problems continue, please contact us.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information to help us match people to you in the MyFling and MyRelationships modules. Please press 'My Ideal Match (for MyFling and MyRelationships)'. If problems continue, please contact us.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         } else {
-            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information about your hobbies. Please press 'Hobbies Preferences'. If problems continue, please contact us.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "First Time Setup Not Complete", message: "We need you to provide some information about your hobbies. Please press 'My Hobbies'. If problems continue, please contact us.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
@@ -155,9 +160,9 @@ class EVCPreferencesViewController: UITableViewController {
             if indexPath.row == 0 {
                 cell.textLabel?.text = "Who I Am"
             } else if indexPath.row == 1 {
-                cell.textLabel?.text = "Matching Preferences (for MyFling and MyRelationships)"
+                cell.textLabel?.text = "My Ideal Match (for MyFling and MyRelationships)"
             } else {
-                cell.textLabel?.text = "Hobbies Preferences"
+                cell.textLabel?.text = "My Hobbies"
             }
             cell.accessoryType = .disclosureIndicator
         } else {

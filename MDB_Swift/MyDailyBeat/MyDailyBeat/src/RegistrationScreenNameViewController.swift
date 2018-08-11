@@ -19,10 +19,18 @@ class RegistrationScreenNameViewController: UIViewController {
     @IBOutlet var passOuter: UITextField!
     @IBOutlet var pass2Outer: UITextField!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var backButton: UIBarButtonItem!
+    @IBOutlet var screenNameImg: UIImageView!
+    @IBOutlet var passImg: UIImageView!
+    @IBOutlet var pass2Img: UIImageView!
+    @IBOutlet var navBar: UINavigationBar!
     var screenNameExists = false
     var tipView: EasyTipView =  EasyTipView(text: "Black ToolTip")
     var nextPage: (() -> ()) = {
         // empty by default
+    }
+    var previousPage: (() -> ()) = {
+        
     }
     
     func makeAlert(with title: String, and message: String) {
@@ -53,6 +61,10 @@ class RegistrationScreenNameViewController: UIViewController {
         obj.verifiedPass = pass2Field.text!
         RegistrationObject.updateInstance(modified: obj)
         self.nextPage()
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        self.previousPage()
     }
     
     var isValidInput: Bool {
@@ -110,7 +122,9 @@ class RegistrationScreenNameViewController: UIViewController {
         self.pass2Outer.layer.borderWidth = 2
         self.pass2Outer.layer.cornerRadius = 8
         self.pass2Outer.clipsToBounds = true
-        
+        self.screenNameImg.image = UIImage.init(named: "account")?.withRenderingMode(.alwaysTemplate)
+        self.passImg.image = UIImage.init(named: "pass")?.withRenderingMode(.alwaysTemplate)
+        self.pass2Img.image = UIImage.init(named: "pass")?.withRenderingMode(.alwaysTemplate)
         screenNameField.attributedPlaceholder = NSAttributedString(string: "Screen Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         passField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])
         pass2Field.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(netHex: 0x0097A4)])

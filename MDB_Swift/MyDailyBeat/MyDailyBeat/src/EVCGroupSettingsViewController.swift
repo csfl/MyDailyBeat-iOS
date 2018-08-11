@@ -22,6 +22,7 @@ class EVCGroupSettingsViewController: UITableViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DeleteCell")
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(editGroup))
         self.navigationItem.rightBarButtonItem = saveButton
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {

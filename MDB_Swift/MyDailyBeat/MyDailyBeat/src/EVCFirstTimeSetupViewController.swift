@@ -13,20 +13,20 @@ class EVCFirstTimeSetupViewController: UIViewController {
     var api: RestAPI!
     @IBOutlet var message: UILabel!
     @IBOutlet var nextButton: UIButton!
+    let prefs = VervePreferences()
 
     @IBAction func next(_ sender: Any) {
-        let prefs = VervePreferences()
-        
+        UIApplication.shared.keyWindow?.hideAllToasts(includeActivity: true, clearQueue: true)
         DispatchQueue.global().async(execute: {() -> Void in
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.makeToastActivity(ToastPosition.center)
             })
-            prefs.userPreferences = self.api.getUserPreferences()
-            prefs.matchingPreferences = self.api.getMatchingPreferences()
-            prefs.hobbiesPreferences = self.api.getHobbiesPreferencesForUser()
+            self.prefs.userPreferences = self.api.getUserPreferences()
+            self.prefs.matchingPreferences = self.api.getMatchingPreferences()
+            self.prefs.hobbiesPreferences = self.api.getHobbiesPreferencesForUser()
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()
-                self.performSegue(withIdentifier: "PrefsSegue", sender: nil)
+                self.performSegue(withIdentifier: "UserPreferencesSegue", sender: nil)
             })
         })
     }
@@ -42,8 +42,24 @@ class EVCFirstTimeSetupViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? EVCPreferencesViewController {
-            dest.unwindSegueID = "ModalUnwindSegue"
+        if let dest = segue.destination as? EVCUserPreferencesViewController {
+            dest.prefs = self.prefs.userPreferences
+            dest.firstTimePrefs = self.prefs
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = "LoginSegue"
+            }
+        } else if let dest = segue.destination as? EVCMatchingPreferencesViewController {
+            dest.prefs = self.prefs.matchingPreferences
+            dest.firstTimePrefs = self.prefs
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = "LoginSegue"
+            }
+        } else if let dest = segue.destination as? EVCHobbiesPreferencesViewController {
+            dest.prefs = self.prefs.hobbiesPreferences
+            dest.firstTimePrefs = self.prefs
+            if UserDefaults.standard.bool(forKey: "IN_SETUP") {
+                dest.endsegue = "LoginSegue"
+            }
         }
     }
 

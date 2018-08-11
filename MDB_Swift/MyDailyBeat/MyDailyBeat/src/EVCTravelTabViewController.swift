@@ -13,6 +13,7 @@ class EVCTravelTabViewController: EVCTabBarController, UITabBarControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        self.setNavTitle(to: "Travel")
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

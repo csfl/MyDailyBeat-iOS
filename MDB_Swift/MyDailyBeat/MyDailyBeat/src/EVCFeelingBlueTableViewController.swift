@@ -19,6 +19,7 @@ class EVCFeelingBlueTableViewController: UITableViewController {
         super.viewDidLoad()
         search = EVCSearchEngine()
         self.loadData()
+        tableView.separatorStyle = .none
     }
 
     

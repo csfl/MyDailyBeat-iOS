@@ -14,12 +14,14 @@ class EVCShoppingSearchViewController: UIViewController, UITableViewDataSource, 
 
     @IBOutlet var mTableView: UITableView!
     var searchResults = [String]()
+    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mTableView.delegate = self
         self.mTableView.dataSource = self
+        mTableView.separatorStyle = .none
         self.loadData()
     }
     
@@ -50,6 +52,8 @@ class EVCShoppingSearchViewController: UIViewController, UITableViewDataSource, 
             self.searchResults = arr2.map({ (json) -> String in
                 return json["shpng_url"].stringValue
             })
+            
+            self.searchResults.sort()
             
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()
@@ -83,8 +87,10 @@ func numberOfSections(in tableView: UITableView) -> Int {
         let addAction = UIAlertAction(title: "Add to Favorites", style: .default) { (action) in
             self.add(toFavs: self.searchResults[indexPath.row])
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         sheet.addAction(browserAction)
         sheet.addAction(addAction)
+        sheet.addAction(cancelAction)
         self.present(sheet, animated: true, completion: nil)
     }
 

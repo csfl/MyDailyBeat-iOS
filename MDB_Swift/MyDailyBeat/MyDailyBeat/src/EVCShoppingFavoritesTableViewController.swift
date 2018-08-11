@@ -17,6 +17,7 @@ class EVCShoppingFavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,8 +84,10 @@ override func numberOfSections(in tableView: UITableView) -> Int {
         let addAction = UIAlertAction(title: "Remove from Favorites", style: .default) { (action) in
             self.remove(fromFavs: self.searchResults[indexPath.row])
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         sheet.addAction(browserAction)
         sheet.addAction(addAction)
+        sheet.addAction(cancelAction)
         self.present(sheet, animated: true, completion: nil)
     }
 

@@ -17,6 +17,7 @@ class EVCPrescriptionProviderTableViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.pharmacyProviders = DataManager.getPrescriptionProviders()
+        tableView.separatorStyle = .none
     }
 
     

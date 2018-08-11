@@ -20,6 +20,7 @@ class EVCGroupCreationTableViewController: UITableViewController {
         self.tableView.register(TextFieldTableViewCell.self, forCellReuseIdentifier: "GroupNameCell")
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(createGroup))
         self.navigationItem.rightBarButtonItem = saveButton
+        tableView.separatorStyle = .none
     }
 
     override func viewWillAppear(_ animated: Bool) {

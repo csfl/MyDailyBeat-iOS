@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor(netHex: 0x0097A4)
+        UITabBar.appearance().unselectedItemTintColor = UIColor.darkGray
         UITabBar.appearance().barTintColor = UIColor(netHex: 0x0097A4)
         UITableView.appearance().separatorStyle = .none
         var normalAttrs = [NSAttributedStringKey: Any]()

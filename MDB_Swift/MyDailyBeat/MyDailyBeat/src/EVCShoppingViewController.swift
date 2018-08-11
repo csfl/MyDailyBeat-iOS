@@ -13,6 +13,7 @@ class EVCShoppingViewController: EVCTabBarController, UITabBarControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        self.setNavTitle(to: "Go Shopping")
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

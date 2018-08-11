@@ -18,6 +18,7 @@ class EVCCallHistoryTableViewController: UITableViewController {
         super.viewDidLoad()
         let userDefaults = UserDefaults.standard
         self.callHistory = userDefaults.stringArray(forKey: "callHistory") ?? [String]()
+        tableView.separatorStyle = .none
     }
 
     

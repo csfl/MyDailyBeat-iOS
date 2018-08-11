@@ -14,6 +14,7 @@ class EVCHealthViewController: EVCTabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNavTitle(to: "Manage my Health")
         self.delegate = self
     }
     

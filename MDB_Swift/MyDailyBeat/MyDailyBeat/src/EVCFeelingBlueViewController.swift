@@ -14,6 +14,8 @@ class EVCFeelingBlueViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNavTitle(to: "I'm Feeling Blue")
+        tableView.separatorStyle = .none
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

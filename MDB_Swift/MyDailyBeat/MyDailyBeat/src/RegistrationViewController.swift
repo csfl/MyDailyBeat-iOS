@@ -91,11 +91,23 @@ class RegistrationViewController: UIPageViewController {
                     contactInfo.nextPage = {
                         self.register()
                     }
+                    contactInfo.previousPage = {
+                        self.setViewControllers([personalInfo], direction: .reverse, animated: true, completion: nil)
+                    }
                     self.setViewControllers([contactInfo], direction: .forward, animated: true, completion: nil)
+                }
+                personalInfo.previousPage = {
+                    self.setViewControllers([next], direction: .reverse, animated: true, completion: nil)
                 }
                 self.setViewControllers([personalInfo], direction: .forward, animated: true, completion: nil)
             }
+            next.previousPage = {
+                self.setViewControllers([vc], direction: .reverse, animated: true, completion: nil)
+            }
             self.setViewControllers([next], direction: .forward, animated: true, completion: nil)
+        }
+        vc.previousPage = {
+            self.navigationController?.popViewController(animated: true)
         }
         return vc
     }
@@ -124,11 +136,12 @@ class RegistrationViewController: UIPageViewController {
                 _ = RestAPI.getInstance().login(withScreenName: user.screenName, andPassword: user.password)
                 UserDefaults.standard.set(user.screenName, forKey: KEY_SCREENNAME)
                 UserDefaults.standard.set(user.password, forKey: KEY_PASSWORD)
-                DispatchQueue.main.sync {
-                    self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+                DispatchQueue.main.async {
+                    UIApplication.shared.keyWindow?.hideAllToasts(includeActivity: true, clearQueue: true)
+                    self.performSegue(withIdentifier: "FirstTimeSetupSegue", sender: self)
                 }
             } else {
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     UIApplication.shared.keyWindow?.makeToast("Failed to create user.")
                 }
             }

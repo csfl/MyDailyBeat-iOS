@@ -91,13 +91,13 @@ public class EVCComposeViewController: UIViewController, UINavigationControllerD
         self.postTextView.becomeFirstResponder()
         self.postTextView.delegate = self
         self.postTextView.frame = CGRect(x: CGFloat(75), y: CGFloat(65), width: CGFloat(248), height: CGFloat(151))
-        self.wasKeyboardManagerEnabled = IQKeyboardManager.sharedManager().enable
-        IQKeyboardManager.sharedManager().enable = false
+        self.wasKeyboardManagerEnabled = IQKeyboardManager.shared.enable
+        IQKeyboardManager.shared.enable = false
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        IQKeyboardManager.sharedManager().enable = self.wasKeyboardManagerEnabled
+        IQKeyboardManager.shared.enable = self.wasKeyboardManagerEnabled
     }
 
     override public func viewDidLoad() {

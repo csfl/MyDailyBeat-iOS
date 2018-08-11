@@ -15,8 +15,8 @@ public class VervePreferences: NSObject, FXForm {
     
     public func fields() -> [Any]! {
         return [[FXFormFieldTitle: "User Preferences", FXFormFieldHeader: "", FXFormFieldKey: "userPreferences"],
-                [FXFormFieldTitle: "Matching Preferences", FXFormFieldKey: "matchingPreferences"],
-                [FXFormFieldTitle: "Hobbies Preferences", FXFormFieldKey: "hobbiesPreferences"],
+                [FXFormFieldTitle: "My Ideal Match", FXFormFieldKey: "matchingPreferences"],
+                [FXFormFieldTitle: "My Hobbies", FXFormFieldKey: "hobbiesPreferences"],
                 [FXFormFieldTitle: "Save", FXFormFieldHeader: "", FXFormFieldAction: "submit:"]
         ]
     }

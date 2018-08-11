@@ -68,10 +68,10 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
             DispatchQueue.main.async(execute: {() -> Void in
                 UIApplication.shared.keyWindow?.hideToastActivity()
                 if success {
-                    UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), completion: nil)
                 }
                 else {
-                    UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                    UIApplication.shared.keyWindow?.makeToast("Upload failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), completion: nil)
                     return
                 }
             })
@@ -196,10 +196,10 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
                 DispatchQueue.main.async(execute: {() -> Void in
                     UIApplication.shared.keyWindow?.hideToastActivity()
                     if result {
-                        UIApplication.shared.keyWindow?.makeToast("User edit successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), style: nil, completion: nil)
+                        UIApplication.shared.keyWindow?.makeToast("User edit successful!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "check.png"), completion: nil)
                     }
                     else {
-                        UIApplication.shared.keyWindow?.makeToast("User edit failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), style: nil, completion: nil)
+                        UIApplication.shared.keyWindow?.makeToast("User edit failed!", duration: 3.5, position: .bottom, title: nil, image: UIImage(named: "error.png"), completion: nil)
                         return
                     }
                     _ = self.navigationController?.popViewController(animated: true)
@@ -227,10 +227,10 @@ class EVCUpdateProfileViewController: UIViewController, UITableViewDataSource, U
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell?.backgroundColor = UIColor.clear
-        cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         cell?.textLabel?.textColor = UIColor.black
         cell?.textLabel?.highlightedTextColor = UIColor.lightGray
-        cell?.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .caption2)
+        cell?.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
         cell?.detailTextLabel?.textColor = UIColor.black
         cell?.detailTextLabel?.highlightedTextColor = UIColor.lightGray
         cell?.selectedBackgroundView = UIView()

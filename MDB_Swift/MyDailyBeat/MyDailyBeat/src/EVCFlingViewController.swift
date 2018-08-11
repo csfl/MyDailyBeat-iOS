@@ -25,7 +25,7 @@ class EVCFlingViewController: EVCTabBarController, UITabBarControllerDelegate {
                 title = "Start a Relationship"
         }
 
-        self.navigationItem.title = title
+        self.setNavTitle(to: title)
         if GBVersionTracking.isFirstLaunchEver() && !self.profCreated {
             self.flingProf()
         }

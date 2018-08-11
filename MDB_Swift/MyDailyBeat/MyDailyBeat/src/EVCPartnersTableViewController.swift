@@ -19,6 +19,7 @@ class EVCPartnersTableViewController: UITableViewController {
         super.viewDidLoad()
         self.favs = [FlingProfile]()
         self.retrievePartners()
+        tableView.separatorStyle = .none
     }
 
     func retrievePartners() {

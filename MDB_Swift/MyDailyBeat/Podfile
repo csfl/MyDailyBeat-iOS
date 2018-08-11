@@ -18,13 +18,14 @@ def shared_pods
     pod 'XMLDictionary'
     pod 'ASMediaFocusManager'
     pod 'IQKeyboardManagerSwift'
-    pod 'Toast-Swift', '~> 2.0.0'
-    pod 'PhoneNumberKit', '~> 1.2'
+    pod 'Toast-Swift', '~> 3.0.1'
+    pod 'PhoneNumberKit', '~> 2.1'
     pod 'EasyTipView', '~> 1.0.2'
     pod "RFAboutView-Swift", '~> 2.0.1'
     pod 'DateToolsSwift'
     pod 'GBVersionTracking'
     pod 'Chronos-Swift'
+    pod 'SwiftDispatchOnce', '~> 1.0'
 end
 
 post_install do |installer|

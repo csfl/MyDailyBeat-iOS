@@ -36,6 +36,8 @@ class EVCBankViewController: UIViewController {
             self.bank = temp
             self.retrieveBankData()
         }
+        btn.layer.cornerRadius = 8
+        btn.clipsToBounds = true
     }
 
     

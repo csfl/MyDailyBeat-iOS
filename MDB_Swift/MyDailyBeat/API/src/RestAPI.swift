@@ -109,7 +109,7 @@ public class RestAPI: NSObject {
     }
 
     public func doesUserExist(withEmail email: String) -> Bool {
-        let parameters: String = "email=" + self.urlencode(email)
+        let parameters: String = "email=" + email
         var result = self.makeRequest(withBaseUrl: PUBLIC_BASE_URL, withPath: "users/exists", withParameters: parameters, withRequestType: GET_REQUEST, andPost: nil)
         return result["success"].boolValue
     }

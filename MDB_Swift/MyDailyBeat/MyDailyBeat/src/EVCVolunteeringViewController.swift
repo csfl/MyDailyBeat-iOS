@@ -44,6 +44,7 @@ class EVCVolunteeringViewController: UITableViewController, CLLocationManagerDel
         currentZip = RestAPI.getInstance().getCurrentUser().zipcode
         currentPage = 1
         self.run(currentQuery)
+        tableView.separatorStyle = .none
         // Do any additional setup after loading the view from its nib.
     }
 

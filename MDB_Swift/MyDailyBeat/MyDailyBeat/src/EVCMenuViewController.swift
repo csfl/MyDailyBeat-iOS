@@ -34,7 +34,7 @@ class EVCMenuViewController: UIViewController, UITableViewDataSource, UITableVie
         imageNames = ["finance2", "phone2", "briefcase2", "cart2", "fling2", "hearts2", "peeps2", "health2", "plane2", "refer2", "hands2"]
         self.logoView.image = EVCCommonMethods.image(with: UIImage(named: "Logo.png")!, scaledTo: CGSize(width: CGFloat(120), height: CGFloat(120)))
         self.logoView.backgroundColor = UIColor.white
-        self.logoView.layer.cornerRadius = 54
+        self.logoView.layer.cornerRadius = 60
         self.logoView.clipsToBounds = true
     }
 
@@ -193,7 +193,7 @@ func numberOfSections(in tableView: UITableView) -> Int {
         }
         cell.backgroundColor = UIColor.clear
         cell.lbl.textColor = UIColor.white
-        cell.lbl.font = UIFont.preferredFont(forTextStyle: .body)
+        cell.lbl.font = UIFont.preferredFont(forTextStyle: .headline)
         cell.lbl.highlightedTextColor = UIColor.lightGray
         cell.selectedBackgroundView = UIView()
         cell.lbl.textAlignment = .right

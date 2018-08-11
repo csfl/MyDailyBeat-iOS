@@ -21,6 +21,7 @@ class EVCChatroomTableViewController: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.loadChatroomsAsync()
+        tableView.separatorStyle = .none
     }
 
     

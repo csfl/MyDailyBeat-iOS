@@ -15,6 +15,7 @@ class EVCHealthPortalTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.healthPortals = DataManager.getHealthPortals()
+        tableView.separatorStyle = .none
     }
 
     

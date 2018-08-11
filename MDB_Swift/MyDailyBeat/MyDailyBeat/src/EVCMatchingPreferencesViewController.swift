@@ -22,13 +22,26 @@ class EVCMatchingPreferencesViewController: UITableViewController {
         if UserDefaults.standard.bool(forKey: "IN_SETUP") {
             let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonAction))
             self.navigationItem.rightBarButtonItem = nextButton
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.setHidesBackButton(true, animated: false)
+        } else {
+            self.navigationItem.setHidesBackButton(false, animated: false)
         }
-        self.navigationItem.title = "Matching Preferences"
+        self.navigationItem.title = "My Ideal Match"
+        tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = UIColor(netHex: 0x0097A4)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     @objc func nextButtonAction() {
         
-        self.performSegue(withIdentifier: "FirstTimeSetupSegue", sender: self)
+        self.performSegue(withIdentifier: "HobbiesPrefsSegue", sender: self)
     }
     
     @objc func cancel() {

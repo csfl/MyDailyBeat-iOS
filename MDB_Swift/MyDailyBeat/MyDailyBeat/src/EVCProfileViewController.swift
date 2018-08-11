@@ -36,7 +36,7 @@ class EVCProfileViewController: UIViewController, UITableViewDataSource, UITable
         self.view.backgroundColor = UIColor.clear
         self.mTableView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleWidth]
         self.mScreenNameLabel.text = RestAPI.getInstance().getCurrentUser().screenName
-        self.mScreenNameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        self.mScreenNameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         self.mScreenNameLabel.textColor = UIColor.white
         self.profilePicView.layer.cornerRadius = 50
         self.profilePicView.clipsToBounds = true
@@ -155,12 +155,12 @@ func numberOfSections(in tableView: UITableView) -> Int {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         }
         cell?.backgroundColor = UIColor.clear
-        cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         cell?.textLabel?.textColor = UIColor.white
         cell?.textLabel?.highlightedTextColor = UIColor.lightGray
         cell?.textLabel?.lineBreakMode = .byWordWrapping
         cell?.textLabel?.numberOfLines = 0
-        cell?.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .caption2)
+        cell?.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
         cell?.detailTextLabel?.textColor = UIColor.white
         cell?.detailTextLabel?.highlightedTextColor = UIColor.lightGray
         cell?.detailTextLabel?.lineBreakMode = .byWordWrapping
