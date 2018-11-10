@@ -21,6 +21,7 @@ public enum UserVerified {
 
 let PUBLIC_BASE_URL = "https://mydailybeat.herokuapp.com"
 let AUTH_BASE_URL = PUBLIC_BASE_URL + "/api"
+let VOLUNTEERING_BASE_URL = "http://mdb-volunteering-req-service.appspot.com/_ah/api/opportunities/v1"
 public let GET_REQUEST = "GET"
 let POST_REQUEST = "POST"
 let PUT_REQUEST = "PUT"
@@ -192,16 +193,16 @@ public class RestAPI: NSObject {
     }
 
     public func getOpportunitiesInLocation(_ zipcode: String, onPage page: Int) -> JSON{
-        let path = "volunteering/search/\(zipcode)/\(page)"
-        var result = self.makeRequest(withBaseUrl: AUTH_BASE_URL, withPath: path, withParameters: "", andAuthToken: auth_token, withRequestType: GET_REQUEST, andPost: nil)
+        let path = "fetchOpportunities/\(page)/\(zipcode)"
+        var result = self.makeRequest(withBaseUrl: VOLUNTEERING_BASE_URL, withPath: path, withParameters: "", withRequestType: GET_REQUEST, andPost: nil)
         var json = result["jsonString"].stringValue
         json = json.removingPercentEncoding!
-        json = json.replacingOccurrences(of: "\\", with: "")
-        json = json.replacingOccurrences(of: "&rsquo;", with: "'")
-        json = json.replacingOccurrences(of: "&#39;", with: "'")
-        json = json.replacingOccurrences(of: "&quot;", with: "")
-        json = json.replacingOccurrences(of: "\"Registration\"", with: "Registration")
-        json = json.replacingOccurrences(of: "&amp;", with: "&")
+//        json = json.replacingOccurrences(of: "\\", with: "")
+//        json = json.replacingOccurrences(of: "&rsquo;", with: "'")
+//        json = json.replacingOccurrences(of: "&#39;", with: "'")
+//        json = json.replacingOccurrences(of: "&quot;", with: "")
+//        json = json.replacingOccurrences(of: "\"Registration\"", with: "Registration")
+//        json = json.replacingOccurrences(of: "&amp;", with: "&")
         
         let range = json.range(of: "{")
         if let r = range, !r.isEmpty {

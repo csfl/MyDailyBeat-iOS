@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0127B56E2006FB4900FDA330 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127B56D2006FB4900FDA330 /* UITextFieldExtension.swift */; };
+		01467C1421800F76005A647F /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01467C0F21800F6B005A647F /* CommonCrypto.framework */; };
+		01467C2921965192005A647F /* Pods_MyDailyBeat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2ECDAD79E7DF22573364BE /* Pods_MyDailyBeat.framework */; };
+		01467C2A21965716005A647F /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01467C0F21800F6B005A647F /* CommonCrypto.framework */; };
+		01467C2B21965716005A647F /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01467C0F21800F6B005A647F /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		014B0D741F57AA47009F4322 /* InnerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B0D731F57AA47009F4322 /* InnerTextField.swift */; };
 		015C4FE21EE7856D002D2118 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4FE11EE7856D002D2118 /* TextFieldTableViewCell.swift */; };
 		015C4FE41EF22314002D2118 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015C4FE31EF22314002D2118 /* Utilities.swift */; };
 		0199816F1EFCA79D009003FD /* AboutDetailsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199816D1EFCA79D009003FD /* AboutDetailsWebViewController.swift */; };
 		019981721EFCA7D0009003FD /* AboutDetailsWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019981711EFCA7D0009003FD /* AboutDetailsWebViewController.xib */; };
-		01AF7E76211E8A13002257E0 /* Pods_MyDailyBeat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01AF7E75211E8A13002257E0 /* Pods_MyDailyBeat.framework */; };
-		01AF7E77211E8A13002257E0 /* Pods_MyDailyBeat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01AF7E75211E8A13002257E0 /* Pods_MyDailyBeat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7608D8111E89E4A800B92C0F /* RegistrationPersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7608D8101E89E4A800B92C0F /* RegistrationPersonalInfoViewController.xib */; };
 		7608D8131E89E9F100B92C0F /* RegistrationPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7608D8121E89E9F100B92C0F /* RegistrationPersonalInfoViewController.swift */; };
 		762289191EDA0F4200F6B586 /* GenderRefList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762289181EDA0F4200F6B586 /* GenderRefList.swift */; };
@@ -171,10 +173,44 @@
 		76E8967E1EC79E9600004BF8 /* res_links.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76E8967D1EC79E9600004BF8 /* res_links.plist */; };
 		76EEA13E1E7F22050084CBD3 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EEA13D1E7F22050084CBD3 /* CoreDataExtensions.swift */; };
 		CB886432F8E1130C7D7C8978 /* Pods_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BEEFB3658C73F3C4A5EC83 /* Pods_API.framework */; };
-		FD51388E2B83C9C80F974E9B /* Pods_MyDailyBeat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2ECDAD79E7DF22573364BE /* Pods_MyDailyBeat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		01467C0C21800F6B005A647F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 211216831AE68D26004E1CE6;
+			remoteInfo = "CommonCrypto-macOS";
+		};
+		01467C0E21800F6B005A647F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 216CAE341AE6B273009A69EF;
+			remoteInfo = "CommonCrypto-iOS";
+		};
+		01467C1021800F6B005A647F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 804503281BA209F6002A5470;
+			remoteInfo = "CommonCrypto-watchOS";
+		};
+		01467C1221800F6B005A647F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80098A511C12E5890029C530;
+			remoteInfo = "CommonCrypto-tvOS";
+		};
+		01467C2C21965716005A647F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 216CAE331AE6B273009A69EF;
+			remoteInfo = "CommonCrypto-iOS";
+		};
 		76BD90E01E5A8D38000ADD90 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76BD90B61E5A8CDD000ADD90 /* Project object */;
@@ -191,7 +227,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				01AF7E77211E8A13002257E0 /* Pods_MyDailyBeat.framework in Embed Frameworks */,
+				01467C2B21965716005A647F /* CommonCrypto.framework in Embed Frameworks */,
 				76BD90E31E5A8D38000ADD90 /* API.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -201,6 +237,7 @@
 
 /* Begin PBXFileReference section */
 		0127B56D2006FB4900FDA330 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonCrypto.xcodeproj; path = CommonCrypto/CommonCrypto.xcodeproj; sourceTree = "<group>"; };
 		014B0D731F57AA47009F4322 /* InnerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerTextField.swift; sourceTree = "<group>"; };
 		015C4FE11EE7856D002D2118 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		015C4FE31EF22314002D2118 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -233,7 +270,6 @@
 		7628FD581E80C4E70053D04A /* RegistrationScreenNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationScreenNameViewController.swift; sourceTree = "<group>"; };
 		7632E4A31E6926C700972F12 /* EVCTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVCTabBarController.swift; sourceTree = "<group>"; };
 		7637EFA11E6C762500C5BC51 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		7637EFA41E6C879400C5BC51 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		7649B5C01E5E55B0001FBCDF /* SwiftyJSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSONExtension.swift; sourceTree = "<group>"; };
 		7649B5C21E5FDE00001FBCDF /* Finance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Finance.storyboard; path = ui/Finance.storyboard; sourceTree = "<group>"; };
 		7649B5C41E6130C8001FBCDF /* Relationships.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Relationships.storyboard; path = ui/Relationships.storyboard; sourceTree = "<group>"; };
@@ -378,9 +414,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01AF7E76211E8A13002257E0 /* Pods_MyDailyBeat.framework in Frameworks */,
+				01467C2921965192005A647F /* Pods_MyDailyBeat.framework in Frameworks */,
+				01467C2A21965716005A647F /* CommonCrypto.framework in Frameworks */,
 				76BD90E21E5A8D38000ADD90 /* API.framework in Frameworks */,
-				FD51388E2B83C9C80F974E9B /* Pods_MyDailyBeat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +424,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01467C1421800F76005A647F /* CommonCrypto.framework in Frameworks */,
 				CB886432F8E1130C7D7C8978 /* Pods_API.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +432,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01467C0621800F6B005A647F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01467C0D21800F6B005A647F /* CommonCrypto.framework */,
+				01467C0F21800F6B005A647F /* CommonCrypto.framework */,
+				01467C1121800F6B005A647F /* CommonCrypto.framework */,
+				01467C1321800F6B005A647F /* CommonCrypto.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0BBE479284C0D8CFB4631AF4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,14 +452,6 @@
 				0E18F9773B9C7A3937002A63 /* Pods-MyDailyBeat.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		7637EFA31E6C877700C5BC51 /* CommonCrypto */ = {
-			isa = PBXGroup;
-			children = (
-				7637EFA41E6C879400C5BC51 /* module.map */,
-			);
-			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
 		767486B91E5AA0520024331F /* src */ = {
@@ -538,7 +578,7 @@
 		76BD90DC1E5A8D37000ADD90 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				7637EFA31E6C877700C5BC51 /* CommonCrypto */,
+				01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */,
 				76BD90DD1E5A8D37000ADD90 /* API.h */,
 				76BD90DE1E5A8D38000ADD90 /* Info.plist */,
 				767486B91E5AA0520024331F /* src */,
@@ -681,6 +721,7 @@
 			);
 			dependencies = (
 				76BD90E11E5A8D38000ADD90 /* PBXTargetDependency */,
+				01467C2D21965716005A647F /* PBXTargetDependency */,
 			);
 			name = MyDailyBeat;
 			productName = MyDailyBeat;
@@ -741,6 +782,12 @@
 			mainGroup = 76BD90B51E5A8CDD000ADD90;
 			productRefGroup = 76BD90BF1E5A8CDE000ADD90 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 01467C0621800F6B005A647F /* Products */;
+					ProjectRef = 01467C0521800F6B005A647F /* CommonCrypto.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				76BD90BD1E5A8CDD000ADD90 /* MyDailyBeat */,
@@ -748,6 +795,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		01467C0D21800F6B005A647F /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 01467C0C21800F6B005A647F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01467C0F21800F6B005A647F /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 01467C0E21800F6B005A647F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01467C1121800F6B005A647F /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 01467C1021800F6B005A647F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01467C1321800F6B005A647F /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 01467C1221800F6B005A647F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		76BD90BC1E5A8CDD000ADD90 /* Resources */ = {
@@ -1047,6 +1125,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		01467C2D21965716005A647F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CommonCrypto-iOS";
+			targetProxy = 01467C2C21965716005A647F /* PBXContainerItemProxy */;
+		};
 		76BD90E11E5A8D38000ADD90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76BD90DA1E5A8D37000ADD90 /* API */;
@@ -1169,11 +1252,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7660026ABCE60274D66CEC75 /* Pods-MyDailyBeat.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 38MW53VVGD;
 				INFOPLIST_FILE = MyDailyBeat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.verve.MyDailyBeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1187,11 +1271,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E18F9773B9C7A3937002A63 /* Pods-MyDailyBeat.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 38MW53VVGD;
 				INFOPLIST_FILE = MyDailyBeat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.verve.MyDailyBeat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1205,6 +1290,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5554A29BBAF93C0D80A560E3 /* Pods-API.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1214,6 +1300,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = API/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.verve.API;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1231,6 +1318,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 917A60E340FDD1C1DE912DB1 /* Pods-API.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1240,6 +1328,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = API/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.verve.API;
 				PRODUCT_NAME = "$(TARGET_NAME)";

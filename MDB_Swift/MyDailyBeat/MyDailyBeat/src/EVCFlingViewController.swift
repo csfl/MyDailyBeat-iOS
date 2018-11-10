@@ -26,6 +26,7 @@ class EVCFlingViewController: EVCTabBarController, UITabBarControllerDelegate {
         }
 
         self.setNavTitle(to: title)
+        self.doesProfExist()
         if GBVersionTracking.isFirstLaunchEver() && !self.profCreated {
             self.flingProf()
         }
@@ -34,6 +35,30 @@ class EVCFlingViewController: EVCTabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+    }
+    
+    func doesProfExist() {
+        DispatchQueue.global().async(execute: {() -> Void in
+            DispatchQueue.main.async(execute: {() -> Void in
+                UIApplication.shared.keyWindow?.makeToastActivity(.center)
+            })
+            let profile: FlingProfile
+            if self.mode == .fling_MODE {
+                profile = RestAPI.getInstance().getFlingProfile(for: RestAPI.getInstance().getCurrentUser())
+            } else if self.mode == .relationship_MODE {
+                profile = RestAPI.getInstance().getRelationshipProfile(for: RestAPI.getInstance().getCurrentUser())
+            } else {
+                profile = RestAPI.getInstance().getFriendsProfile(for: RestAPI.getInstance().getCurrentUser())
+            }
+            if profile.id == 0 {
+                self.profCreated = false
+            } else {
+                self.profCreated = true
+            }
+            DispatchQueue.main.async(execute: {() -> Void in
+                UIApplication.shared.keyWindow?.hideToastActivity()
+            })
+        })
     }
 
     func flingProf() {
